@@ -1,2 +1,5 @@
-/C3_Venv
-.DS_Store
+# Ignore virtual environments
+venv_c3/
+
+# Ignore compiled Python files
+__pycache__/
