@@ -3,3 +3,5 @@ venv_c3/
 
 # Ignore compiled Python files
 __pycache__/
+/C3_Venv
+.DS_Store
