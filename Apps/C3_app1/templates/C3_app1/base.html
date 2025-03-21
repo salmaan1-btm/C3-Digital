@@ -1,0 +1,38 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>Title</title>  
+    
+    {% load static %}  
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}"> 
+    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+</head>  
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Welcome!</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="{% url 'C3_app1:index'%}">Dashboard</a>
+                <a class="nav-link" href="{% url 'C3_app1:claims'%}">Claims Processing</a>
+                <a class="nav-link" href="{% url 'C3_app1:inventory'%}">Inventory Management</a>
+                <a class="nav-link" href="{% url 'C3_app1:sales_p'%}">Sales Portal</a>
+            </div>
+            </div>
+        </div>
+    </nav>
+
+{% block content %} to be overridden
+{% endblock content %}
+
+</body>  
+</html>
+    
