@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -21,3 +22,19 @@ class Sales(models.Model):
     def __str__(self):
         # Return a string representation of the model
         return self.text
+    
+class Claim(models.Model):
+    STATUS_CHOICES = [
+        ('submitted', 'Submitted'),
+        ('initiated', 'Initiated'),
+        ('rejected', 'Rejected'),
+    ]
+
+    name = models.CharField(max_length=255)  # Claim Name
+    description = models.TextField(blank=True, null=True)  # Optional claim details
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # The user who submitted the claim
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='submitted')  # Claim status
+    created_at = models.DateTimeField(auto_now_add=True)  # Auto timestamp when claim is created
+
+    def __str__(self):
+        return f"{self.name} - {self.get_status_display()}"

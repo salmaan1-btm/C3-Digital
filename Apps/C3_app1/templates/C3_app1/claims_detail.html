@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Claim Details{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ claim.name }}</h2>
+    <p><strong>Status:</strong> {{ claim.get_status_display }}</p>
+    <p><strong>Description:</strong> {{ claim.description }}</p>
+    <a href="{% url 'claims' %}" class="btn btn-secondary">Back to Claims</a>
+</div>
+{% endblock %}

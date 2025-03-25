@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Apps.C3_app1',
     'Apps.users',
+
+    # Third-party apps
+    'django_extensions',  # Enables `show_urls` command
 ]
 
 MIDDLEWARE = [

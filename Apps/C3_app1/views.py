@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Product
 from .sales_form import SalesForm
+from .models import Claim
 
 
 # Create your views here.
@@ -13,8 +14,21 @@ def index(request):
 
 @login_required
 def claims(request):
-    """The Claims page for C3 App 1."""
-    return render(request, 'C3_app1/claims.html')
+    # Fetch claims by their status
+    submitted_claims = Claim.objects.filter(status='submitted')
+    initiated_claims = Claim.objects.filter(status='initiated')
+    rejected_claims = Claim.objects.filter(status='rejected')
+
+    # Pass them to the template
+    return render(request, 'C3_app1/claims.html', {
+        'submitted_claims': submitted_claims,
+        'initiated_claims': initiated_claims,
+        'rejected_claims': rejected_claims,
+    })
+
+def claim_detail_view(request, claim_id):
+    claim = get_object_or_404(Claim, id=claim_id)  # Get claim or return 404
+    return render(request, 'claims_detail.html', {'claim': claim})
 
 @login_required
 def inventory(request):
