@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Product
 from .sales_form import SalesForm
@@ -27,8 +27,8 @@ def claims(request):
     })
 
 def claim_detail_view(request, claim_id):
-    claim = get_object_or_404(Claim, id=claim_id)  # Get claim or return 404
-    return render(request, 'claims_detail.html', {'claim': claim})
+    claim = get_object_or_404(Claim, id=claim_id)  # Fetch claim or return 404
+    return render(request, 'C3_app1/claims_detail.html', {'claim': claim})
 
 @login_required
 def inventory(request):
