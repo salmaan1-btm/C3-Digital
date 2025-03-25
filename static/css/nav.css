@@ -32,3 +32,9 @@
     margin-left: 260px; /* Push content to the right */
     flex-grow: 1; /* Allow content to take up remaining space */
 }
+
+.logo {
+    width: 150px;  /* Adjust the width as needed */
+    height: auto;  /* Keeps the aspect ratio */
+    margin-bottom: 10px; /* Adds spacing below the logo */
+}
