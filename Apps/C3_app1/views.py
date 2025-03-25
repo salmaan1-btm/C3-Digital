@@ -26,3 +26,8 @@ def sales_p(request):
     """The sales portal page for C3 App 1."""
     return render(request, 'C3_app1/sales_p.html')
 
+@login_required
+def settings(request):
+    """The settings page for C3 App 1."""
+    return render(request, 'C3_app1/settings.html')
+
