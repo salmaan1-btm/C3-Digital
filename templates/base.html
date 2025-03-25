@@ -15,6 +15,7 @@
 <body>
 
     <div class="d-flex">
+        {% if user.is_authenticated %}
         <!-- Sidebar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column sidebar">
             <div class="container-fluid d-flex flex-column align-items-start">
@@ -28,10 +29,12 @@
                         <a class="nav-link" href="{% url 'C3_app1:claims' %}">Claims Processing</a>
                         <a class="nav-link" href="{% url 'C3_app1:inventory' %}">Inventory Management</a>
                         <a class="nav-link" href="{% url 'C3_app1:sales_p' %}">Sales Portal</a>
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                     </div>
                 </div>
             </div>
         </nav>
+        {% endif %}
 
         <!-- Main Content -->
         <div class="content-container w-100 p-4">
