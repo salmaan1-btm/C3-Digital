@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from .models import Product
+
 
 # Create your views here.
 
@@ -16,7 +18,8 @@ def claims(request):
 @login_required
 def inventory(request):
     """The inventory page for C3 App 1."""
-    return render(request, 'C3_app1/inventory.html')
+    products = Product.objects.all()  # Get all products from the database
+    return render(request, 'C3_app1/inventory.html', {'products': products})
 
 @login_required
 def sales_p(request):
