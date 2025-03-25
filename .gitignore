@@ -1,3 +1,6 @@
+# Ignore database file
+db.sqlite3
+
 # Ignore virtual environments
 venv_c3/
 
