@@ -25,11 +25,19 @@
                 </button>
                 <div class="collapse navbar-collapse show" id="navbarNavAltMarkup">
                     <div class="navbar-nav flex-column">
+                        <p class="nav-link">Hello, {{ user.username }}.</p>
                         <a class="nav-link active" aria-current="page" href="{% url 'C3_app1:index' %}">Dashboard</a>
                         <a class="nav-link" href="{% url 'C3_app1:claims' %}">Claims Processing</a>
                         <a class="nav-link" href="{% url 'C3_app1:inventory' %}">Inventory Management</a>
                         <a class="nav-link" href="{% url 'C3_app1:sales_p' %}">Sales Portal</a>
-                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+
+                    </div>
+                      <!-- Logout button forced to the bottom -->
+                    <div class="logout-container">
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-secondary btn-sm w-100">Logout</button>
+                        </form>
                     </div>
                 </div>
             </div>
