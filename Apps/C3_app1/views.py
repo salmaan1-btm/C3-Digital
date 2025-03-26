@@ -66,6 +66,6 @@ def new_sales(request):
 @login_required
 def view_sales(request):
     """shows all sales transactions"""
-    saleslist = Sale.objects.order_by('date_added')
+    saleslist = Sale.objects.order_by('-date_added')
     context={'view_sales':saleslist}
     return render(request, 'C3_app1/view_sales.html',context)

@@ -4,6 +4,6 @@
 <form action="{% url 'C3_app1:new_sales' %}" method='post'>
     {% csrf_token %}     
     {{ form.as_p }}     
-    <button name="submit">Add sales transaction</button>     
+    <button class = "btn btn-primary" name="submit">Add sales transaction</button>     
 </form>
 {% endblock content %}
