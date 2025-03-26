@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Product
 from .sales_form import SalesForm
 from .models import Claim
+from .models import Sale
 
 
 # Create your views here.
@@ -61,3 +62,10 @@ def new_sales(request):
     # Display a blank or invalid form.
     context = {'form' : form}
     return render(request, 'C3_app1/new_sales.html', context)
+
+@login_required
+def view_sales(request):
+    """shows all sales transactions"""
+    saleslist = Sale.objects.order_by('date_added')
+    context={'view_sales':saleslist}
+    return render(request, 'C3_app1/view_sales.html',context)
