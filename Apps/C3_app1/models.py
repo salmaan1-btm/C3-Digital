@@ -18,7 +18,7 @@ class Sale(models.Model):
     name = models.CharField(max_length=200)
     product = models.TextField(blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True) 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null = True, blank = True)
 
     def __str__(self):
         # Return a string representation of the model
