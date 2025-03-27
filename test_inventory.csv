@@ -1,0 +1,26 @@
+name,description,stock,dealership,price
+Interior Detailer,,10,C3 Montreal,22.99
+Wax,Tire Shine,19,C3 Toronto,3.99
+Leather Conditioner,Glass Cleaner,,Speedy Motors,15.99
+Tire Shine,,73,C3 Calgary,39.99
+Clay Bar,Tire Shine,95,C3 Montreal,12.99
+Car Wash Soap,,23,C3 Toronto,24.99
+Tire Shine,,,,
+Leather Conditioner,Car Wash Soap,34,C3 Calgary,
+Wheel Cleaner,Car Wash Soap,25,C3 Montreal,
+Clay Bar,Tire Shine,87,Speedy Motors,
+Wheel Cleaner,Tire Shine,82,C3 Edmonton,
+Glass Cleaner,,71,,
+Glass Cleaner,Glass Cleaner,,C3 Montreal,14.99
+Leather Conditioner,,,C3 Toronto,19.99
+Tire Shine,Wheel Cleaner,57,C3 Edmonton,3.99
+Wax,,73,C3 Calgary,
+Car Wash Soap,,,,3.99
+Wax,Interior Detailer,1,C3 Toronto,3.99
+Glass Cleaner,,10,Speedy Motors,
+Clay Bar,,65,C3 Calgary,22.99
+Interior Detailer,,35,Speedy Motors,12.99
+Clay Bar,Glass Cleaner,55,C3 Toronto,19.99
+Car Wash Soap,Glass Cleaner,67,C3 Edmonton,29.99
+Polish,Car Wash Soap,1,Speedy Motors,199.99
+Polish,,44,C3 Montreal,4.99
