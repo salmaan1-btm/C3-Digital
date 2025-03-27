@@ -5,7 +5,11 @@
     <thead>
         <tr>
             <th>Sale ID</th>
-            <th>Product</th>
+            <th>Dealership</th>
+            <th>Product Sold</th>
+            <th>Quantity</th>
+            <th>Description</th>
+            <th>Status</th>
             <th>Date</th>
             <th>User</th>
         </tr>
@@ -14,13 +18,13 @@
         {% for sale in view_sales %}
         <tr>
             <td>{{sale.id}}</td>
-            <td>{{sale.product_sold}}</td>
+            <td>{{sale.dealership}}</td>
+            <td>{{sale.product_sold.name}}</td>
             <td>{{sale.quantity}}</td>
             <td>{{sale.description}}</td>
-            <td>{{sale.dealership}}</td>
             <td>{{sale.status}}</td>
-            <td>{{sale.user}}</td>
             <td>{{sale.date_added}}</td>
+            <td>{{sale.user}}</td>
         </tr>
         {% empty %}
         <tr>
