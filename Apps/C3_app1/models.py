@@ -28,9 +28,9 @@ class Sale(models.Model):
     ]
 
     product_sold = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=0)
+    quantity = models.PositiveIntegerField()
     description = models.TextField(blank=True, null=True)
-    dealership = models.ForeignKey(Dealership, on_delete=models.CASCADE, null = True, blank = True)  
+    dealership = models.ForeignKey(Dealership, on_delete=models.CASCADE)  
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
     date_added = models.DateTimeField(auto_now_add=True)
