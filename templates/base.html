@@ -30,7 +30,7 @@
                 </button>
                 <div class="collapse navbar-collapse show" id="navbarNavAltMarkup">
                     <div class="navbar-nav flex-column">
-                        <p class="nav-link">Hello, {{ user.username }}.</p>
+                        <p class="nav-link">{{ user.username }}</p>
                         <a class="nav-link active" aria-current="page" href="{% url 'C3_app1:index' %}">Dashboard</a>
                         <a class="nav-link" href="{% url 'C3_app1:claims' %}">Claims Processing</a>
                         <a class="nav-link" href="{% url 'C3_app1:inventory' %}">Inventory Management</a>

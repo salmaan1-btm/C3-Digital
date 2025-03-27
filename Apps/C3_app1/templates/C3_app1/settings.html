@@ -1,8 +1,56 @@
-{% extends "base.html" %}
-{% block content %}
-<header>
-    <h1>Settings</h1>
-</header>
-<p>The Settings page helps you keep manage your account.</p>
-{% endblock content %}
+{% extends 'base.html' %}
 
+{% block content %}
+<h2>Account Settings</h2>
+
+<div class="card mb-3">
+    <div class="card-header">Personal Information</div>
+    <div class="card-body">
+        <form>
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-control" value="{{ user.username }}" disabled>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" value="{{ user.email }}" disabled>
+            </div>
+            <button type="button" class="btn btn-secondary" disabled>Edit</button>
+        </form>
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header">Change Password</div>
+    <div class="card-body">
+        <form>
+            <div class="mb-3">
+                <label class="form-label">Current Password</label>
+                <input type="password" class="form-control" disabled>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">New Password</label>
+                <input type="password" class="form-control" disabled>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Confirm New Password</label>
+                <input type="password" class="form-control" disabled>
+            </div>
+            <button type="button" class="btn btn-secondary" disabled>Change Password</button>
+        </form>
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header">Account Details</div>
+    <div class="card-body">
+        <p>View or update your account details. (Feature coming soon)</p>
+        <ul class="list-group">
+            <li class="list-group-item">Account Type: Standard</li>
+            <li class="list-group-item">Member Since: {{ user.date_joined|date:"F Y" }}</li>
+        </ul>
+        <button class="btn btn-secondary mt-3" disabled>Edit Account Details</button>
+    </div>
+</div>
+
+{% endblock %}
