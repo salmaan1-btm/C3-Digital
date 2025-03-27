@@ -5,14 +5,14 @@
 </header>
 <p>The Sales Portal helps you keep track of your sales and allows for new sales to be added.</p>
 <div class="d-grid gap-2">
-    <button type="button" class="btn btn-outline-primary">
-        <a href="{% url 'C3_app1:view_sales' %}" class="text-decoration-none"> View sales transaction</a>
+    <button type="button" class="btn btn-primary">
+        <a href="{% url 'C3_app1:view_sales' %}" class="text-decoration-none link-light"> View sales transaction</a>
     </button>
-    <button type="button" class="btn btn-outline-primary">
-        <a href="{% url 'C3_app1:new_sales' %}" class="text-decoration-none"> Add a new sales transaction</a>
+    <button type="button" class="btn btn-primary">
+        <a href="{% url 'C3_app1:new_sales' %}" class="text-decoration-none link-light"> Add a new sales transaction</a>
     </button>
-    <button type="button" class="btn btn-outline-primary"> 
-        <a href="{% url 'C3_app1:inventory' %}" class="text-decoration-none"> Manage inventories</a>
+    <button type="button" class="btn btn-primary"> 
+        <a href="{% url 'C3_app1:inventory' %}" class="text-decoration-none link-light"> Manage inventories</a>
     </button>
 </div>
 {% endblock content %}
