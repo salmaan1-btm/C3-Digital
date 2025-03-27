@@ -1,34 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-<header>
-    <h1>Inventory</h1>
-</header>
-<p>Inventory helps you keep track of your stock, dealership locations, and product information.</p>
+<div class="container mt-5">
+  <h2 class="mb-4">Select a Dealership</h2>
+  <div class="row">
+    {% for dealership in dealerships %}
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ dealership.name }}</h5>
+            <a href="{% url 'C3_app1:dealership_inventory' dealership.id %}" class="btn btn-primary mt-3">View Inventory</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No dealerships available.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
 
-<table class="table table-striped mt-4">
-    <thead>
-        <tr>
-            <th>Product Name</th>
-            <th>Description</th>
-            <th>Stock Level</th>
-            <th>Dealership</th>
-            <th>Price</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for product in products %}
-        <tr>
-            <td>{{ product.name }}</td>
-            <td>{{ product.description }}</td>
-            <td>{{ product.stock }}</td>
-            <td>{{ product.dealership }}</td>
-            <td>${{ product.price }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="5">No products found in inventory.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% endblock content %}

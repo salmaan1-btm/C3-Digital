@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Product
+from .models import Product, Dealership
 from .sales_form import SalesForm
 from .models import Claim
 from .models import Sale
@@ -33,9 +33,9 @@ def claim_detail_view(request, claim_id):
 
 @login_required
 def inventory(request):
-    """The inventory page for C3 App 1."""
-    products = Product.objects.all()  # Get all products from the database
-    return render(request, 'C3_app1/inventory.html', {'products': products})
+    """Display dealership cards instead of full product list."""
+    dealerships = Dealership.objects.all()
+    return render(request, 'C3_app1/inventory.html', {'dealerships': dealerships})
 
 @login_required
 def sales_p(request):
@@ -69,3 +69,14 @@ def view_sales(request):
     saleslist = Sale.objects.order_by('-date_added')
     context={'view_sales':saleslist}
     return render(request, 'C3_app1/view_sales.html',context)
+
+
+@login_required
+def dealership_inventory(request, dealership_id):
+    """Displays products for a specific dealership."""
+    dealership = get_object_or_404(Dealership, id=dealership_id)
+    products = Product.objects.filter(dealership=dealership)
+    return render(request, 'C3_app1/dealership_inventory.html', {
+        'dealership': dealership,
+        'products': products
+    })

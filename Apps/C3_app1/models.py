@@ -3,11 +3,17 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class Dealership(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
 class Product(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
     stock = models.PositiveIntegerField(default=0)
-    dealership = models.CharField(max_length=200)
+    dealership = models.ForeignKey(Dealership, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
