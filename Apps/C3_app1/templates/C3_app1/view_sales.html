@@ -4,7 +4,7 @@
 <table class="table table-striped mt-4">
     <thead>
         <tr>
-            <th>Name</th>
+            <th>Sale ID</th>
             <th>Product</th>
             <th>Date</th>
             <th>User</th>
@@ -13,10 +13,14 @@
     <tbody>
         {% for sale in view_sales %}
         <tr>
-            <td>{{sale.name}}</td>
-            <td>{{sale.product}}</td>
-            <td>{{sale.date_added}}</td>
+            <td>{{sale.id}}</td>
+            <td>{{sale.product_sold}}</td>
+            <td>{{sale.quantity}}</td>
+            <td>{{sale.description}}</td>
+            <td>{{sale.dealership}}</td>
+            <td>{{sale.status}}</td>
             <td>{{sale.user}}</td>
+            <td>{{sale.date_added}}</td>
         </tr>
         {% empty %}
         <tr>

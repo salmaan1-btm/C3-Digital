@@ -21,14 +21,23 @@ class Product(models.Model):
 
 class Sale(models.Model):
     # A sales entry
-    name = models.CharField(max_length=200)
-    product = models.TextField(blank=True, null=True)
-    date_added = models.DateTimeField(auto_now_add=True) 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null = True, blank = True)
+    STATUS_CHOICES = [
+        ('completed', 'Completed'),
+        ('pending', 'Pending'),
+        ('cancelled', 'Cancelled'),
+    ]
 
+    product_sold = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=0)
+    description = models.TextField(blank=True, null=True)
+    dealership = models.ForeignKey(Dealership, on_delete=models.CASCADE, null = True, blank = True)  
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
+    date_added = models.DateTimeField(auto_now_add=True)
+    
     def __str__(self):
         # Return a string representation of the model
-        return self.name
+        return f"{self.product_sold.name} - {self.quantity} units - {self.get_status_display()}"
     
 class Claim(models.Model):
     STATUS_CHOICES = [

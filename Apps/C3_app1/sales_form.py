@@ -6,9 +6,9 @@ from .models import Sale
 class SalesForm(forms.ModelForm):
     class Meta:
         model = Sale
-        fields = ['name', 'product']
+        fields = ['quantity']
         labels = {
-            'name': 'Enter name',
-            'product': 'Enter product'
+            'quantity': 'Enter quantity',
+            #'product': 'Enter product'
             }
 
