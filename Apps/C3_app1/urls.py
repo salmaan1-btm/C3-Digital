@@ -13,5 +13,6 @@ urlpatterns = [
     path('settings/', views.settings, name='settings'),
     path('view_sales/', views.view_sales, name='view_sales'),
     path('new_sales/', views.new_sales, name = 'new_sales'),
+    path('view_products/', views.view_products, name = 'view_products'),
     path('inventory/dealership/<int:dealership_id>/', views.dealership_inventory, name='dealership_inventory'),
 ]

@@ -10,7 +10,7 @@ class SalesForm(forms.ModelForm):
         labels = {
             'product_sold': 'Enter product',
             'quantity': 'Enter quantity',
-            'description': 'Enter description',
+            'description': 'Enter description (optional)',
             'user': 'Enter user',
             'status': 'Select status'
             }

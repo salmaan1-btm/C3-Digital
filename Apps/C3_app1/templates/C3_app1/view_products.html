@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}     
+<header>
+    <h1>Products List</h1>
+</header>
+
+<ul class = "list-group">
+    <li class="list-group-item"></li>
+</ul>
+<div class="container mt-5">
+    <div class="row">
+      {% for product in products %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">{{product.id}}</h5>
+              <p class="card-text">{{product.name}}</p>
+              <p class="card-text">{{product.description}}</p>
+              <p class="card-text">{{product.price}}</p>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <p>No dealerships available.</p>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock content %}

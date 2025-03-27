@@ -49,7 +49,7 @@ def settings(request):
 
 @login_required
 def new_sales(request):
-    """ Add a new Sales Transaction"""
+    """ Add a new Sales Transaction through a form."""
     if request.method != 'POST':
         #no data submitted; create a blank form.
         form = SalesForm()
@@ -65,7 +65,7 @@ def new_sales(request):
 
 @login_required
 def view_sales(request):
-    """shows all sales transactions"""
+    """Displays all sales transactions."""
     saleslist = Sale.objects.order_by('-date_added')
     context={'view_sales':saleslist}
     return render(request, 'C3_app1/view_sales.html',context)
@@ -80,3 +80,9 @@ def dealership_inventory(request, dealership_id):
         'dealership': dealership,
         'products': products
     })
+
+@login_required
+def view_products(request):
+    """Displays all products offered."""
+    products = Product.objects.all()
+    return render(request, 'C3_app1/view_products.html', {'products':products})
