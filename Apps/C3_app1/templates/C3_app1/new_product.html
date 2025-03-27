@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}     
+<header>
+    <h1>Add a new product</h1>
+</header>  
+<form action="{% url 'C3_app1:new_product' %}" method='post'>
+    {% csrf_token %}     
+    {{ form.as_p }}     
+    <button class = "btn btn-primary" name="submit">Add product</button>     
+</form>
+{% endblock content %}

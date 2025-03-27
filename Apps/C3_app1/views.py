@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Product, Dealership
 from .sales_form import SalesForm
+from .product_form import ProductForm
 from .models import Claim
 from .models import Sale
 
@@ -86,3 +87,19 @@ def view_products(request):
     """Displays all products offered."""
     products = Product.objects.all()
     return render(request, 'C3_app1/view_products.html', {'products':products})
+
+@login_required
+def new_product(request):
+    """ Add a new product through a form."""
+    if request.method != 'POST':
+        #no data submitted; create a blank form.
+        form = ProductForm()
+    else:
+        #POST data submitted; process data.
+        form = ProductForm(data = request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('C3_app1:sales_p')
+    # Display a blank or invalid form.
+    context = {'form' : form}
+    return render(request, 'C3_app1/new_product.html', context)
