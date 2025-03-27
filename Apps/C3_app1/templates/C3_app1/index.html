@@ -1,7 +1,52 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
 {% block content %}
-<header>
-    <h1>Dashboard</h1>
-</header>
-<p>Dashboard helps you keep track of your inventory, sales and claims that are taking place.</p>
-{% endblock content %}
+<h2>Dashboard</h2>
+
+<div class="row mb-4">
+    <!-- Claims Overview -->
+    <div class="col-md-6">
+        <div class="card mb-3">
+            <div class="card-header">Initiated Claims</div>
+            <ul class="list-group list-group-flush">
+                {% for claim in claims %}
+                <li class="list-group-item">
+                    {{ claim.name }}
+                    <a href="{% url 'C3_app1:claims_detail' claim.id %}" class="btn btn-sm btn-primary float-end">View</a>
+                </li>
+                {% empty %}
+                <li class="list-group-item">No ongoing claims.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Inventory Levels -->
+    <div class="col-md-6">
+        <div class="card mb-3">
+            <div class="card-header">Dealerships</div>
+            <ul class="list-group list-group-flush">
+                {% for dealer in dealerships %}
+                <li class="list-group-item">{{ dealer.name }}</li>
+                {% empty %}
+                <li class="list-group-item">No dealerships found.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Sales Section -->
+<div class="card">
+    <div class="card-header">Sales Summary</div>
+    <ul class="list-group list-group-flush">
+        {% for sale in sales %}
+        <li class="list-group-item">
+            {{ sale.product_sold.name }} - {{ sale.quantity }} units - {{ sale.get_status_display }}
+        </li>
+        {% empty %}
+        <li class="list-group-item">No sales records available.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

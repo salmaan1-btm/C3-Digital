@@ -11,8 +11,16 @@ from .models import Sale
 
 @login_required
 def index(request):
-    """The home page for C3 App 1."""
-    return render(request, 'C3_app1/index.html')
+    claims = Claim.objects.filter(status='initiated')[:5]  # Ongoing claims
+    dealerships = Dealership.objects.all()  # Show all dealerships
+    sales = Sale.objects.all()[:5]  # Recent sales
+
+    context = {
+        'claims': claims,
+        'dealerships': dealerships,
+        'sales': sales
+    }
+    return render(request, 'C3_app1/index.html', context)
 
 @login_required
 def claims(request):
