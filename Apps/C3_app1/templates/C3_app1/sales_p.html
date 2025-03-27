@@ -4,10 +4,15 @@
     <h1>Sales Portal</h1>
 </header>
 <p>The Sales Portal helps you keep track of your sales and allows for new sales to be added.</p>
-<a href="{% url 'C3_app1:view_sales' %}"> View sales transaction</a>
-<br>
-<a href="{% url 'C3_app1:new_sales' %}"> Add a new sales transaction</a>
-<br>
-<a href="{% url 'C3_app1:inventory' %}"> Manage inventories</a>
+<div class="d-grid gap-2">
+    <button type="button" class="btn btn-outline-primary">
+        <a href="{% url 'C3_app1:view_sales' %}" class="text-decoration-none"> View sales transaction</a>
+    </button>
+    <button type="button" class="btn btn-outline-primary">
+        <a href="{% url 'C3_app1:new_sales' %}" class="text-decoration-none"> Add a new sales transaction</a>
+    </button>
+    <button type="button" class="btn btn-outline-primary"> 
+        <a href="{% url 'C3_app1:inventory' %}" class="text-decoration-none"> Manage inventories</a>
+    </button>
+</div>
 {% endblock content %}
-
