@@ -30,8 +30,8 @@ Secure login/logout functionality with session management.
 
 ### Installing
 
-* Installation & Setup
-* 1. Clone the Repository
+Installation & Setup
+1. Clone the Repository
 * git clone https://github.com/salmaan1-btm/C3-Digital.git
 * cd C3-Digital
 
