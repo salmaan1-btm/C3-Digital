@@ -5,26 +5,27 @@ This project is a prototype for the C3 Digital Transformation System, designed t
 ## Description
 
 The prototype focuses on demonstrating the user interface (UI), data models, and key workflows, serving as a foundation for future development.
+
 Features:
-Dashboard
-Provides an overview of system activities, including:
-Recent claims
-Dealership inventory status
-Recent sales transactions
+1. Dashboard
+- Provides an overview of system activities, including:
+- Recent claims
+- Dealership inventory status
+- Recent sales transactions
 
-Claims Processing
-Allows C3 staff to view and manage claims.
+2. Claims Processing
+- Allows C3 staff to view and manage claims.
 
-Inventory Management
-Displays available inventory for dealerships.
+3. Inventory Management
+- Displays available inventory for dealerships.
 
-Sales Portal
-Logs sales transactions and associates them with products and dealerships.
+4. Sales Portal
+- Logs sales transactions and associates them with products and dealerships.
 
-User Authentication & Role-Based Access
-Admin users can manage system data.
-Regular users have restricted access to relevant sections.
-Secure login/logout functionality with session management.
+5. User Authentication & Role-Based Access
+- Admin users can manage system data.
+- Regular users have restricted access to relevant sections.
+- Secure login/logout functionality with session management.
 
 ## Getting Started
 
