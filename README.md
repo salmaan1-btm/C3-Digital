@@ -35,35 +35,35 @@ Installation & Setup
 * git clone https://github.com/salmaan1-btm/C3-Digital.git
 * cd C3-Digital
 
-* 2. Create a Virtual Environment
+2. Create a Virtual Environment
 * python -m venv venv
 * source venv/bin/activate  # Mac/Linux
 * venv\Scripts\activate  # Windows
 
-* 3. Install Dependencies
+3. Install Dependencies
 * pip install -r requirements.txt
 
-* 4. Apply Database Migrations
+4. Apply Database Migrations
 * python manage.py migrate
 
-* 5. Create a Superuser (Admin)
+5. Create a Superuser (Admin)
 * python manage.py createsuperuser
 * Follow the prompts to set up admin credentials.
 
-* 6. Run the Development Server
+6. Run the Development Server
 * python manage.py runserver
 * Visit http://127.0.0.1:8000/ in your browser.
 
 ## Authors
 
 Salmaan Khan
-Email: salmaan1@ualberta.ca
+- Email: salmaan1@ualberta.ca
 
 Sophia Kim
-Email: syk@ualberta.ca
+- Email: syk@ualberta.ca
 
 Sahibpreet Boyal
-Email: sahibpre@ualberta.ca
+- Email: sahibpre@ualberta.ca
 
 
 
