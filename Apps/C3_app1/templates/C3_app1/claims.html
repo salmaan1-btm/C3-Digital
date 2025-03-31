@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container mt-4">
     <h2>Claims Processing</h2>
-
+    <a href="{% url 'C3_app1:new_claim' %}" class="btn btn-primary mb-3">Create Claim</a>
     <!-- Row for Submitted and Initiated Claims -->
     <div class="row">
         <!-- Submitted Claims (Left) -->
@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- Initiated Claims (Right) -->
         <div class="col-md-6">
             <div class="card">

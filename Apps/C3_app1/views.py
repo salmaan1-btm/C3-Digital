@@ -1,11 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Product, Dealership
-from .sales_form import SalesForm
-from .product_form import ProductForm
-from .models import Claim
-from .models import Sale
-
+from .models import Product, Dealership, Claim, Sale
+from .forms import SalesForm, ProductForm, ClaimsForm
 
 # Create your views here.
 
@@ -39,6 +35,22 @@ def claims(request):
 def claim_detail_view(request, claim_id):
     claim = get_object_or_404(Claim, id=claim_id)  # Fetch claim or return 404
     return render(request, 'C3_app1/claims_detail.html', {'claim': claim})
+
+@login_required
+def new_claims(request):
+    """ Add a new Sales Transaction through a form."""
+    if request.method != 'POST':
+        #no data submitted; create a blank form.
+        form = ClaimsForm()
+    else:
+        #POST data submitted; process data.
+        form = ClaimsForm(data = request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('C3_app1:claims')
+    # Display a blank or invalid form.
+    context = {'form' : form}
+    return render(request, 'C3_app1/new_claim.html', context)
 
 @login_required
 def inventory(request):

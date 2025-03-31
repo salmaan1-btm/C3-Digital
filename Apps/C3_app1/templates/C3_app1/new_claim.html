@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}     
+<header>
+    <h1>Add a new claim:</h1>
+</header>
+ 
+<form action="{% url 'C3_app1:new_claim' %}" method='post'>
+    {% csrf_token %}     
+    {{ form.as_p }}     
+    <button class = "btn btn-primary" name="submit">Add Claim</button>     
+</form>
+{% endblock content %}
