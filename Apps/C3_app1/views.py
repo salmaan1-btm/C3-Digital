@@ -69,6 +69,10 @@ def settings(request):
     return render(request, 'C3_app1/settings.html')
 
 @login_required
+def personal_details(request):
+    return render(request, 'C3_app1/personal_details.html')
+
+@login_required
 def new_sales(request):
     """ Add a new Sales Transaction through a form."""
     if request.method != 'POST':

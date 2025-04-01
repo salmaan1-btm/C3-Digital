@@ -29,7 +29,7 @@
                 {% for dealership in dealerships %}
                 <li class="list-group-item">
                     {{ dealership.name }}
-                    <a href="{% url 'C3_app1:dealership_inventory' dealership_id=dealership.id %}" class="btn btn-sm btn-primary float-end">View</a>
+                    <a href="{% url 'C3_app1:dealership_inventory' dealership.id %}" class="btn btn-sm btn-primary float-end">View</a>
                 </li>
                 {% empty %}
                 <li class="list-group-item">No dealerships found.</li>
