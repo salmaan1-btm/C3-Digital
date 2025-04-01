@@ -26,8 +26,11 @@
         <div class="card mb-3">
             <div class="card-header">Dealerships</div>
             <ul class="list-group list-group-flush">
-                {% for dealer in dealerships %}
-                <li class="list-group-item">{{ dealer.name }}</li>
+                {% for dealership in dealerships %}
+                <li class="list-group-item">
+                    {{ dealership.name }}
+                    <a href="{% url 'C3_app1:dealership_inventory' dealership_id=dealership.id %}" class="btn btn-sm btn-primary float-end">View</a>
+                </li>
                 {% empty %}
                 <li class="list-group-item">No dealerships found.</li>
                 {% endfor %}
@@ -38,7 +41,11 @@
 
 <!-- Sales Section -->
 <div class="card">
-    <div class="card-header">Sales Summary</div>
+    <div 
+    class="card-header">Sales Summary
+    <a href="{% url 'C3_app1:view_sales' %}" class="btn btn-sm btn-primary float-end">View All Sales</a>
+    </div>
+    
     <ul class="list-group list-group-flush">
         {% for sale in sales %}
         <li class="list-group-item">
