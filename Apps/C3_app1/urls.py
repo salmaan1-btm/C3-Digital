@@ -18,4 +18,5 @@ urlpatterns = [
     path('view_products/', views.view_products, name = 'view_products'),
     path('new_product/', views.new_product, name = 'new_product'),
     path('inventory/dealership/<int:dealership_id>/', views.dealership_inventory, name='dealership_inventory'),
+    path("support/", views.support_view, name="support"),
 ]

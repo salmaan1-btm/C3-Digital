@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import Product, Dealership, Claim, Sale
-from .forms import SalesForm, ProductForm, ClaimsForm
+from .forms import SalesForm, ProductForm, ClaimsForm, SupportForm
 
 # Create your views here.
 
@@ -32,6 +33,7 @@ def claims(request):
         'rejected_claims': rejected_claims,
     })
 
+@login_required
 def claim_detail_view(request, claim_id):
     claim = get_object_or_404(Claim, id=claim_id)  # Fetch claim or return 404
     return render(request, 'C3_app1/claims_detail.html', {'claim': claim})
@@ -127,3 +129,20 @@ def new_product(request):
     # Display a blank or invalid form.
     context = {'form' : form}
     return render(request, 'C3_app1/new_product.html', context)
+
+def support_view(request):
+    if request.method == "POST":
+        form = SupportForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            
+            messages.success(request, "Your request has been submitted successfully.")
+            return redirect("C3_app1:support")  
+
+    else:
+        form = SupportForm()
+    
+    return render(request, "C3_app1/support.html", {"form": form})

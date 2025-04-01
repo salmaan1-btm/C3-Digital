@@ -39,6 +39,7 @@
                     </div>
                       <!-- Logout button forced to the bottom -->
                     <div class="logout-container">
+                        <a class="nav-link" href="{% url 'C3_app1:support' %}">Support</a>
                         <a class="nav-link" href="{% url 'C3_app1:settings' %}">Settings</a>
                         <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
