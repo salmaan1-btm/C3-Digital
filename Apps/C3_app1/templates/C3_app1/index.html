@@ -49,7 +49,7 @@
     <ul class="list-group list-group-flush">
         {% for sale in sales %}
         <li class="list-group-item">
-            {{ sale.product_sold.name }} - {{ sale.quantity }} units - {{ sale.get_status_display }}
+            {{ sale.inventory }} - {{ sale.quantity }} units - {{ sale.get_status_display }}
         </li>
         {% empty %}
         <li class="list-group-item">No sales records available.</li>
