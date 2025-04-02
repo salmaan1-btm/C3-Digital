@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Product, Dealership, Claim, Sale
-from .forms import SalesForm, ProductForm, ClaimsForm, SupportForm
+from .models import Product, Dealership, Claim, Sale, Inventory
+from .forms import SalesForm, ProductForm, ClaimsForm, SupportForm, InventoryForm
 
 # Create your views here.
 
@@ -101,12 +101,41 @@ def view_sales(request):
 @login_required
 def dealership_inventory(request, dealership_id):
     """Displays products for a specific dealership."""
-    dealership = get_object_or_404(Dealership, id=dealership_id)
-    products = Product.objects.filter(dealership=dealership)
+    dealership = Dealership.objects.get(id=dealership_id)
+    inventory_items = Inventory.objects.filter(dealership=dealership)
     return render(request, 'C3_app1/dealership_inventory.html', {
         'dealership': dealership,
-        'products': products
+        'inventory_items': inventory_items
     })
+
+@login_required
+def add_inventory(request):
+    if request.method != 'POST':
+    #no data submitted; create a blank form.
+        form = InventoryForm()
+    else:
+        #POST data submitted; process data.
+        form = InventoryForm(data = request.POST)
+
+        if form.is_valid():
+            # Access cleaned data from the form
+            product = form.cleaned_data['product']
+            dealership = form.cleaned_data['dealership']
+            quantity = form.cleaned_data['quantity']
+
+            # Try to get or create the inventory entry
+            inventory, created = Inventory.objects.get_or_create(
+                product=product, dealership=dealership, defaults={'quantity': quantity}
+            )
+
+            if not created:
+                inventory.stock += quantity  # Update the stock
+                inventory.save()
+
+        return redirect('C3_app1:inventory')
+    context = {'form':form}
+    return render(request, 'C3_app1/add_inventory.html', context)
+
 
 @login_required
 def view_products(request):

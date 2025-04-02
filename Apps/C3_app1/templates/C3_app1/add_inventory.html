@@ -1,0 +1,5 @@
+  <form action="{% url 'C3_app1:add_inventory' %}" method='post'>
+    {% csrf_token %}     
+    {{ form.as_p }}     
+    <button class = "btn btn-primary" name="submit">Update inventory</button>     
+</form>

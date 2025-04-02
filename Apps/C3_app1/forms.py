@@ -1,12 +1,12 @@
 from django import forms
-from .models import Sale, Product, User, Claim
+from .models import Sale, Product, User, Claim, Inventory
 
 class SalesForm(forms.ModelForm):
     class Meta:
         model = Sale
-        fields = ['product_sold', 'quantity', 'description', 'dealership', 'user', 'status']
+        fields = ['inventory', 'quantity', 'description', 'user', 'status']
         labels = {
-            'product_sold': 'Enter product',
+            'inventory': 'Select product from inventory',
             'quantity': 'Enter quantity',
             'description': 'Enter description (optional)',
             'user': 'Enter user',
@@ -22,6 +22,16 @@ class ProductForm(forms.ModelForm):
             'description': 'Enter description',
             'price': 'Enter price',
             }
+
+class InventoryForm(forms.ModelForm):
+    class Meta:
+        model = Inventory
+        fields = ['product', 'dealership', 'quantity']
+        labels = {
+            'product': 'Select product',
+            'dealership': 'Select dealership',
+            'quantity': 'Select quantity',
+        }
 
 class ClaimsForm(forms.ModelForm):
     class Meta:

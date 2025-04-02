@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-5">
+
   <h2 class="mb-4">{{ dealership.name }} – Inventory</h2>
-  {% if products %}
+  {% if inventory_items %}
   <table class="table table-striped">
     <thead>
       <tr>
@@ -13,12 +14,12 @@
       </tr>
     </thead>
     <tbody>
-      {% for product in products %}
+      {% for inventory in inventory_items %}
       <tr>
-        <td>{{ product.name }}</td>
-        <td>{{ product.description }}</td>
-        <td>{{ product.stock }}</td>
-        <td>${{ product.price }}</td>
+        <td>{{ inventory.product.name }}</td>
+        <td>{{ inventory.product.description }}</td>
+        <td>{{ inventory.quantity }}</td>
+        <td>${{ inventory.product.price }}</td>
       </tr>
       {% endfor %}
     </tbody>
