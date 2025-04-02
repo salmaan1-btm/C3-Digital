@@ -12,6 +12,13 @@ class SalesForm(forms.ModelForm):
             'user': 'Enter user',
             'status': 'Select status'
             }
+        widgets = {
+            'inventory': forms.Select(attrs={'class': 'form-control'}),
+            'quantity': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter quantity'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Enter description (optional)'}),
+            'user': forms.Select(attrs={'class': 'form-control'}),
+            'status': forms.Select(attrs={'class': 'form-control'})  
+        }
 
 class ProductForm(forms.ModelForm):
     class Meta:
@@ -22,6 +29,11 @@ class ProductForm(forms.ModelForm):
             'description': 'Enter description',
             'price': 'Enter price',
             }
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter product name'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Enter description'}),
+            'price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter price'}),
+        }
 
 class InventoryForm(forms.ModelForm):
     class Meta:
@@ -31,6 +43,11 @@ class InventoryForm(forms.ModelForm):
             'product': 'Select product',
             'dealership': 'Select dealership',
             'quantity': 'Select quantity',
+        }
+        widgets = {
+            'product': forms.Select(attrs={'class': 'form-control'}),
+            'dealership': forms.Select(attrs={'class': 'form-control'}),
+            'quantity': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter quantity'}),
         }
 
 class ClaimsForm(forms.ModelForm):
@@ -47,7 +64,7 @@ class ClaimsForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter claim name'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Enter description'}),
             'user': forms.Select(attrs={'class': 'form-control'}),  
-            'status': forms.Select(choices=Claim.STATUS_CHOICES)  # Dropdown for status
+            'status': forms.Select(choices=Claim.STATUS_CHOICES)
         }
 
 class SupportForm(forms.ModelForm):
