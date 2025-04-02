@@ -1,5 +1,5 @@
 from django import forms
-from .models import Sale, Product, User, Claim, Inventory
+from .models import Sale, Product, User, Claim, Inventory, Support
 
 class SalesForm(forms.ModelForm):
     class Meta:
@@ -50,8 +50,19 @@ class ClaimsForm(forms.ModelForm):
             'status': forms.Select(choices=Claim.STATUS_CHOICES)  # Dropdown for status
         }
 
-class SupportForm(forms.Form):
-    name = forms.CharField(label="Your Name", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(label="Your Email", widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    subject = forms.CharField(label="Subject", max_length=200, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    message = forms.CharField(label="Message", widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
+class SupportForm(forms.ModelForm):
+    class Meta:
+        model = Support
+        fields = ['name', 'email', 'subject', 'message']
+        labels = {
+            'name': 'Your Name',
+            'email': 'Your Email',
+            'subject': 'Subject',
+            'message': 'Message',
+        }
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'subject': forms.TextInput(attrs={'class': 'form-control'}),  
+            'message': forms.Textarea(attrs={'class': 'form-control', 'rows': 5})
+        }
