@@ -4,9 +4,10 @@ from .models import Sale, Product, User, Claim, Inventory, Support
 class SalesForm(forms.ModelForm):
     class Meta:
         model = Sale
-        fields = ['inventory', 'quantity', 'description', 'user', 'status']
+        fields = ['inventory', 'dealership','quantity', 'description', 'user', 'status']
         labels = {
             'inventory': 'Select product from inventory',
+            'dealership': 'Select dealership',
             'quantity': 'Enter quantity',
             'description': 'Enter description (optional)',
             'user': 'Enter user',
@@ -14,6 +15,7 @@ class SalesForm(forms.ModelForm):
             }
         widgets = {
             'inventory': forms.Select(attrs={'class': 'form-control'}),
+            'dealership': forms.Select(attrs={'class': 'form-control'}),
             'quantity': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter quantity'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Enter description (optional)'}),
             'user': forms.Select(attrs={'class': 'form-control'}),

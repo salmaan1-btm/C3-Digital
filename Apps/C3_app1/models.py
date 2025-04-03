@@ -36,6 +36,7 @@ class Sale(models.Model):
         ('cancelled', 'Cancelled'),
     ]
     inventory = models.ForeignKey(Inventory, on_delete=models.CASCADE)
+    dealership = models.ForeignKey(Dealership, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     description = models.TextField(blank=True, null=True) 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -46,8 +47,14 @@ class Sale(models.Model):
         """Ensure enough stock is available before completing a sale."""
         if self.status == "completed" and self.inventory.quantity < self.quantity:
             raise ValidationError("Not enough stock available for this sale.")
+        """Ensure product is from the right dealership"""
+        if self.dealership != self.inventory.dealership:
+            raise ValidationError("Dealership does not match Inventory.") 
+        """Ensure sale quantity is greater than zero"""
+        if self.quantity <=0:
+            raise ValidationError("Quantity must be greater than 0.")
     def save(self, *args, **kwargs):
-        self.clean() 
+        self.clean()
         if self.status =="completed":
             # Deduct stock only when the sale is completed
             if self.inventory.quantity < self.quantity:
