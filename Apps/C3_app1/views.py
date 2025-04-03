@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import HttpResponseForbidden
 from .models import Product, Dealership, Claim, Sale, Inventory
 from .forms import SalesForm, ProductForm, ClaimsForm, SupportForm, InventoryForm
 
@@ -158,6 +159,26 @@ def new_product(request):
     # Display a blank or invalid form.
     context = {'form' : form}
     return render(request, 'C3_app1/new_product.html', context)
+
+@login_required
+def edit_product(request, product_id):
+    """Allow only admin/superuser to edit the existing product"""
+    if not request.user.is_superuser:
+        return HttpResponseForbidden("You do not have permission to edit products.")
+    """Edit an existing product"""
+    product = Product.objects.get(id = product_id)
+    if request.method != 'POST':
+        # Initial request; pre-fill form with the current entry.
+        form = ProductForm(instance = product)
+    else:
+        #POST data submitted; prcess data.
+        form = ProductForm(instance = product, data = request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('C3_app1:view_products')
+    context = {'product': product, 'form': form}
+    return render(request, 'C3_app1/edit_product.html', context)
+
 
 def support_view(request):
     if request.method == "POST":
