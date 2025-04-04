@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'Apps.datavis',
 
     # Third-party apps
-    'django_extensions',  # Enables `show_urls` command
+    'django_extensions', 
 ]
 
 MIDDLEWARE = [
