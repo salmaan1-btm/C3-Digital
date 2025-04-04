@@ -4,6 +4,11 @@ from django.contrib import messages
 from django.http import HttpResponseForbidden
 from .models import Product, Dealership, Claim, Sale, Inventory
 from .forms import SalesForm, ProductForm, ClaimsForm, SupportForm, InventoryForm
+from io import BytesIO
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import base64
 
 # Create your views here.
 
@@ -196,3 +201,24 @@ def support_view(request):
         form = SupportForm()
     
     return render(request, "C3_app1/support.html", {"form": form})
+
+def plot(request):
+    x = [1, 2, 3, 4, 5]
+    y = [1, 4, 9, 16, 25]
+
+    fig, ax = plt.subplots()
+    ax.bar(x, y)
+
+    # Optional: chart title and label axes.
+    ax.set_title("Square Numbers", fontsize=24)
+    ax.set_xlabel("Value", fontsize=14)
+    ax.set_ylabel("Square of Value", fontsize=14)
+    
+    # Create a bytes buffer for saving image
+    figbuffer = BytesIO()
+    plt.savefig(figbuffer, format='png', dpi=300)
+    image_base640=base64.b64encode(figbuffer.getvalue())
+    image_base64 = image_base640.decode('utf-8')
+    figbuffer.close()    
+    context={'image_base64':image_base64 }
+    return render(request,'C3_app1/plot.html',context)
