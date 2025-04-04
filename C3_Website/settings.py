@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Apps.C3_app1',
     'Apps.users',
+    'Apps.datavis',
 
     # Third-party apps
     'django_extensions',  # Enables `show_urls` command
