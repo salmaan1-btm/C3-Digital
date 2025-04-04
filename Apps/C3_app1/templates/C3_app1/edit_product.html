@@ -3,7 +3,7 @@
 {% block content %}
 
 <p>Edit product:</p>
-<form action ="{% url 'C3_app1:edit_product' product.id %}" method='post'>
+<form action ="{% url 'C3_app1:edit_product' product.id %}" method='post' enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <button name="submit">Save changes</button>

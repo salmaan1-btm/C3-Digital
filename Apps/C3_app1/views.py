@@ -177,7 +177,7 @@ def edit_product(request, product_id):
         form = ProductForm(instance = product)
     else:
         #POST data submitted; prcess data.
-        form = ProductForm(instance = product, data = request.POST)
+        form = ProductForm(instance = product, data = request.POST, files = request.FILES)
         if form.is_valid():
             form.save()
             return redirect('C3_app1:view_products')

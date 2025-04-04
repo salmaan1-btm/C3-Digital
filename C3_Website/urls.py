@@ -24,3 +24,6 @@ urlpatterns = [
     path('',include('Apps.C3_app1.urls')),
     path('users/', include('Apps.users.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
