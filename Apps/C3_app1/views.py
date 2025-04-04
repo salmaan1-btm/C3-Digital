@@ -157,7 +157,7 @@ def new_product(request):
         form = ProductForm()
     else:
         #POST data submitted; process data.
-        form = ProductForm(data = request.POST)
+        form = ProductForm(data = request.POST, files = request.FILES)
         if form.is_valid():
             form.save()
             return redirect('C3_app1:sales_p')

@@ -12,18 +12,30 @@
     <div class="row">
       {% for product in products %}
         <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            {% if product.image %}
+            <img
+              src = "{{ product.image.url }}"
+              class = "card-img-top"
+              alt = "{{ product.name }}"
+              style = "max-height: 200px; object-fit: cover"
+              >
+              {% else %}
+                <small class="text-muted">No image available.</small>
+              {% endif %}
+
           <div class="card mb-4 shadow-sm">
             <div class="card-body">
               <h5 class="card-title">{{product.id}}</h5>
               <p class="card-text">{{product.name}}</p>
               <p class="card-text">{{product.description}}</p>
-              <p class="card-text">{{product.price}}</p>
+              <p class="card-text">${{product.price}}</p>
               <p><a href="{% url 'C3_app1:edit_product' product.id %}">Edit product</a></p>
             </div>
           </div>
         </div>
       {% empty %}
-        <p>No dealerships available.</p>
+        <p>No products available.</p>
       {% endfor %}
     </div>
   </div>

@@ -25,11 +25,12 @@ class SalesForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'description', 'price']
+        fields = ['name', 'description', 'price', 'image']
         labels = {
             'name': 'Enter product name',
             'description': 'Enter description',
             'price': 'Enter price',
+            'image': 'Upload product image',
             }
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter product name'}),
