@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}Claims Processing - C3{% endblock %}
+{% block title %}Update Inventory{% endblock %}
 
 {% block content %}
+<header>
+    <h1>Update Inventory</h1>
+</header>
 <form action="{% url 'C3_app1:add_inventory' %}" method='post'>
     {% csrf_token %}     
     {{ form.as_p }}     
