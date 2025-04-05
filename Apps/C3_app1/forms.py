@@ -34,6 +34,7 @@ class ProductForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter product name'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Enter description'}),
             'price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter price'}),
+            'image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
 
 class InventoryForm(forms.ModelForm):

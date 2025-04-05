@@ -4,8 +4,95 @@
 {% block content %}     
 <div class = "container mt-4">
   <h1 class ="mb-4">Products List</h1>
+<div class="row">
 
-  <div class="row">
+  <!-- Core C3 Products -->
+  <div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100">
+      <div class="image-container" style="height: 300px; width: 100%; overflow: hidden;">
+        <img src="{% static 'images/rust_protection.jpg' %}" class="img-fluid w-100" alt="Rust Protection" style="object-fit: cover; object-position: center;">
+      </div>
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">1</h5>
+        <p class="card-text">Rust Protection</p>
+        <p class="card-text">Prevents corrosion and rust on vehicle underbodies and key components.</p>
+        <p class="card-text">$0.00</p>
+        <div class="mt-auto">
+          <a href="#" class="btn btn-sm btn-outline-secondary disabled">Core Product</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100">
+      <div class="image-container" style="height: 300px; width: 100%; overflow: hidden;">
+        <img src="{% static 'images/paint_protection.jpg' %}" class="img-fluid w-100" alt="Paint Protection" style="object-fit: cover; object-position: center;">
+      </div>
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">2</h5>
+        <p class="card-text">Paint Protection</p>
+        <p class="card-text">Protects the vehicle’s exterior paint from UV rays, pollutants, and minor abrasions.</p>
+        <p class="card-text">$0.00</p>
+        <div class="mt-auto">
+          <a href="#" class="btn btn-sm btn-outline-secondary disabled">Core Product</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100">
+      <div class="image-container" style="height: 300px; width: 100%; overflow: hidden;">
+        <img src="{% static 'images/fabric_protection.jpg' %}" class="img-fluid w-100" alt="Fabric Protection" style="object-fit: cover; object-position: center;">
+      </div>
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">3</h5>
+        <p class="card-text">Fabric Protection</p>
+        <p class="card-text">Shields fabric and upholstery from stains, spills, and daily wear and tear.</p>
+        <p class="card-text">$0.00</p>
+        <div class="mt-auto">
+          <a href="#" class="btn btn-sm btn-outline-secondary disabled">Core Product</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100">
+      <div class="image-container" style="height: 300px; width: 100%; overflow: hidden;">
+        <img src="{% static 'images/vin_etching.jpg' %}" class="img-fluid w-100" alt="VIN Etching" style="object-fit: cover; object-position: center;">
+      </div>
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">4</h5>
+        <p class="card-text">VIN Etching</p>
+        <p class="card-text">Enhances theft deterrence by etching the vehicle’s VIN on windows and parts.</p>
+        <p class="card-text">$0.00</p>
+        <div class="mt-auto">
+          <a href="#" class="btn btn-sm btn-outline-secondary disabled">Core Product</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100">
+      <div class="image-container" style="height: 300px; width: 100%; overflow: hidden;">
+        <img src="{% static 'images/extended_warranty.jpg' %}" class="img-fluid w-100" alt="Extended Warranty" style="object-fit: cover; object-position: center;">
+      </div>
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">5</h5>
+        <p class="card-text">Extended Warranty</p>
+        <p class="card-text">Provides long-term protection on major vehicle components beyond factory warranty.</p>
+        <p class="card-text">$0.00</p>
+        <div class="mt-auto">
+          <a href="#" class="btn btn-sm btn-outline-secondary disabled">Core Product</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Additional Products --> 
     {% for product in products %}
     <div class="col-lg-4 col-md-6 mb-4">
       <div class="card h-100">
@@ -20,7 +107,7 @@
         {% endif %}
       </div>
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title">{{ product.id }}</h5>
+          <h5 class="card-title">{{ product.id|add:5 }}</h5>
           <p class="card-text">{{ product.name }}</p>
           <p class="card-text">{{ product.description }}</p>
           <p class="card-text">${{ product.price }}</p>
@@ -36,6 +123,5 @@
     {% empty %}
     <p>No products available.</p>
     {% endfor %}
-  </div>
 </div>
 {% endblock content %}
