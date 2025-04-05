@@ -23,23 +23,10 @@
 <div class="card mb-3">
     <div class="card-header">Change Password</div>
     <div class="card-body">
-        <form>
-            <div class="mb-3">
-                <label class="form-label">Current Password</label>
-                <input type="password" class="form-control" disabled>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">New Password</label>
-                <input type="password" class="form-control" disabled>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Confirm New Password</label>
-                <input type="password" class="form-control" disabled>
-            </div>
-            <button type="button" class="btn btn-secondary" disabled>Change Password</button>
-        </form>
+        <a href="{% url 'C3_app1:password_change' %}" class="btn btn-primary">Change Password</a>
     </div>
 </div>
+
 
 <div class="card mb-3">
     <div class="card-header">Account Details</div>
