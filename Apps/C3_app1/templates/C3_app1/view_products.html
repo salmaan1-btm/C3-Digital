@@ -8,7 +8,7 @@
     {% for product in products %}
     <div class="col-lg-4 col-md-6 mb-4">
       <div class="card h-100">
-        <div class="image-container" style="max-height: 400px; overflow:hidden;">
+        <div class="image-container" style="height: 300px; width: 100%; overflow: hidden;">
         {% if product.image and product.image.url %}
         <img src = "{{ product.image.url }}"
             class = "img-fluid w-100"
