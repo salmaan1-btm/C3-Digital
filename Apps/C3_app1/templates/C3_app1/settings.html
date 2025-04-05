@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_settings.html' %}
 {% block title %}Account Settings{% endblock %}
 {% block content %}
 <h2>Account Settings</h2>
@@ -15,28 +15,17 @@
                 <label class="form-label">Email Address</label>
                 <input type="email" class="form-control" value="{{ user.email }}" disabled>
             </div>
-            <a href="{% url 'C3_app1:personal_details' %}" class="btn btn-secondary">View More Details</a>
         </form>
     </div>
 </div>
 
 <div class="card mb-3">
-    <div class="card-header">Change Password</div>
-    <div class="card-body">
-        <a href="{% url 'C3_app1:password_change' %}" class="btn btn-secondary">Change Password</a>
-    </div>
-</div>
-
-
-<div class="card mb-3">
     <div class="card-header">Account Details</div>
     <div class="card-body">
-        <p>View or update your account details. (Feature coming soon)</p>
         <ul class="list-group">
             <li class="list-group-item">Account Type: Standard</li>
             <li class="list-group-item">Member Since: {{ user.date_joined|date:"F Y" }}</li>
         </ul>
-        <button class="btn btn-secondary mt-3" disabled>Edit Account Details</button>
     </div>
 </div>
 

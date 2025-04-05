@@ -1,0 +1,58 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>{% block title %}{% endblock %}</title>  
+    
+    {% load static %}  
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}"> 
+    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+</head>  
+<body>
+    
+    <div class="d-flex">
+        {% if user.is_authenticated %}
+        <!-- Sidebar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column sidebar">
+            <div class="container-fluid d-flex flex-column align-items-start">
+                <!-- Logo at the top -->
+                <a class="navbar-brand" href="#">
+                    <img src="{% static 'images/logo.jpg' %}" alt="C3 Logo" class="logo">
+                </a>
+                <a class="navbar-brand" href="#">Settings</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse show" id="navbarNavAltMarkup">
+                    <div class="navbar-nav flex-column">
+                        <p class="nav-link">Hello, {{ user.username }}</p>
+                        <a class="nav-link active" aria-current="page" href="{% url 'C3_app1:settings' %}">Account Information</a>
+                        <a class="nav-link" href="{% url 'C3_app1:password_change' %}">Change Password</a>
+                    </div>
+                      <!-- Logout button forced to the bottom -->
+                    <div class="logout-container">
+                        <a class="nav-link" href="{% url 'C3_app1:support' %}">Support</a>
+                        <a class="nav-link" href="{% url 'C3_app1:index' %}">Dashboard</a>
+
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-secondary btn-sm w-100">Logout</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        {% endif %}
+        <!-- Main Content -->
+        <div class="content-container w-100 p-4">
+            {% block content %} to be overridden {% endblock content %}
+        </div>
+    </div>
+
+</body>  
+</html>
