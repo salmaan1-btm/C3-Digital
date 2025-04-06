@@ -44,11 +44,11 @@ Installation & Setup
 3. Install Dependencies
 * pip install -r requirements.txt
 
-4. Add Core Products
-* python add_core_products.py
-
-5. Apply Database Migrations
+4. Apply Database Migrations
 * python manage.py migrate
+
+5. Add Core Products
+* python add_core_products.py
 
 6. Create a Superuser (Admin)
 * python manage.py createsuperuser
