@@ -16,7 +16,7 @@ import base64
 def index(request):
     claims = Claim.objects.filter(status='initiated')[:5]  # Ongoing claims
     dealerships = Dealership.objects.all()  # Show all dealerships
-    sales = Sale.objects.all()[:5]  # Recent sales
+    sales = Sale.objects.order_by('-id')[:5]  # Recent sales
 
     context = {
         'claims': claims,
@@ -134,7 +134,7 @@ def new_sales(request):
 @login_required
 def view_sales(request):
     """Displays all sales transactions."""
-    saleslist = Sale.objects.order_by('-date_added')
+    saleslist = Sale.objects.all().order_by('-id')
     context={'view_sales':saleslist}
     return render(request, 'C3_app1/view_sales.html',context)
 

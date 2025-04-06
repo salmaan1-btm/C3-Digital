@@ -42,14 +42,14 @@
 <!-- Sales Section -->
 <div class="card">
     <div 
-    class="card-header">Sales Summary
+    class="card-header">Sales Transactions
     <a href="{% url 'C3_app1:view_sales' %}" class="btn btn-sm btn-primary float-end">View All Sales</a>
     </div>
     
     <ul class="list-group list-group-flush">
         {% for sale in sales %}
         <li class="list-group-item">
-            {{ sale.inventory }} - {{ sale.quantity }} units - {{ sale.get_status_display }}
+            {{ sale.dealership }} - {{ sale.inventory.product }} - {{ sale.quantity }} units sold - {{sale.date_added}}
         </li>
         {% empty %}
         <li class="list-group-item">No sales records available.</li>
