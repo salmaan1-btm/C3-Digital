@@ -61,6 +61,25 @@ def new_claims(request):
     return render(request, 'C3_app1/new_claim.html', context)
 
 @login_required
+def edit_claim(request, claim_id):
+
+    # Get the claim instance
+    claim = get_object_or_404(Claim, id=claim_id)
+
+    if request.method != 'POST':
+        # Initial request; pre-fill form with the current entry
+        form = ClaimsForm(instance=claim)
+    else:
+        # POST data submitted; process data
+        form = ClaimsForm(instance=claim, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('C3_app1:claims')
+
+    context = {'claim': claim, 'form': form}
+    return render(request, 'C3_app1/edit_claim.html', context)
+
+@login_required
 def inventory(request):
     """Display dealership cards instead of full product list."""
     dealerships = Dealership.objects.all()
