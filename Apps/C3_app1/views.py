@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponse
 from .models import Product, Dealership, Claim, Sale, Inventory
 from .forms import SalesForm, ProductForm, ClaimsForm, SupportForm, InventoryForm
 from io import BytesIO
@@ -79,6 +79,31 @@ def edit_claim(request, claim_id):
     context = {'claim': claim, 'form': form}
     return render(request, 'C3_app1/edit_claim.html', context)
 
+def claims_chart(request):
+    # Count each claim type
+    submitted = Claim.objects.filter(status='submitted').count()
+    initiated = Claim.objects.filter(status='initiated').count()
+    rejected = Claim.objects.filter(status='rejected').count()
+
+    labels = ['Submitted', 'Initiated', 'Rejected']
+    values = [submitted, initiated, rejected]
+    colors = ['#0d6efd', '#ffc107', '#dc3545']
+
+    # Plot setup
+    plt.figure(figsize=(6, 4))
+    plt.bar(labels, values, color=colors)
+    plt.title('Claims Overview')
+    plt.ylabel('Number of Claims')
+
+    # Render to BytesIO
+    buffer = BytesIO()
+    plt.tight_layout()
+    plt.savefig(buffer, format='png')
+    plt.close()
+    buffer.seek(0)
+
+    return HttpResponse(buffer.getvalue(), content_type='image/png')
+
 @login_required
 def inventory(request):
     """Display dealership cards instead of full product list."""
@@ -89,15 +114,6 @@ def inventory(request):
 def sales_p(request):
     """The sales portal page for C3 App 1."""
     return render(request, 'C3_app1/sales_p.html')
-
-@login_required
-def settings(request):
-    """The settings page for C3 App 1."""
-    return render(request, 'C3_app1/settings.html')
-
-@login_required
-def personal_details(request):
-    return render(request, 'C3_app1/personal_details.html')
 
 @login_required
 def new_sales(request):
@@ -241,6 +257,15 @@ def support_view(request):
         form = SupportForm()
     
     return render(request, "C3_app1/support.html", {"form": form})
+
+@login_required
+def settings(request):
+    """The settings page for C3 App 1."""
+    return render(request, 'C3_app1/settings.html')
+
+@login_required
+def personal_details(request):
+    return render(request, 'C3_app1/personal_details.html')
 
 def plot(request):
     x = [1, 2, 3, 4, 5]
