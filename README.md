@@ -44,14 +44,17 @@ Installation & Setup
 3. Install Dependencies
 * pip install -r requirements.txt
 
-4. Apply Database Migrations
+4. Add Core Products
+* python add_core_products.py
+
+5. Apply Database Migrations
 * python manage.py migrate
 
-5. Create a Superuser (Admin)
+6. Create a Superuser (Admin)
 * python manage.py createsuperuser
 * Follow the prompts to set up admin credentials.
 
-6. Run the Development Server
+7. Run the Development Server
 * python manage.py runserver
 * Visit http://127.0.0.1:8000/ in your browser.
 

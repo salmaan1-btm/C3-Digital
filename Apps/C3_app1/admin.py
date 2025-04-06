@@ -1,9 +1,5 @@
 from django.contrib import admin
-from .models import Product
-from .models import Claim
-from .models import Sale
-from .models import Dealership
-from .models import Inventory
+from .models import Product, Claim, Sale, Dealership, Inventory
 
 # Register your models here.
 
