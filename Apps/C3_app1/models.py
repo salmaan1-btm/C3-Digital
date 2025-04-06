@@ -17,6 +17,7 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to = 'products/', blank = True)
+    reorder_threshold = models.PositiveIntegerField(default=5)
 
     def __str__(self):
         return self.name

@@ -25,8 +25,127 @@
       {% endfor %}
     </tbody>
   </table>
+  <h4 class="mt-5">Stock Distribution by Product</h4>
+  <canvas id="stockChart" class="chart-sm"></canvas>
+  <h4 class="mt-5">Inventory Levels by Product</h4>
+  <canvas id="barChart" class="chart-md"></canvas>
+
   {% else %}
     <p>No products found for this dealership.</p>
   {% endif %}
 </div>
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
+
+
+<script>
+  const ctx = document.getElementById('stockChart').getContext('2d');
+  const stockChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: {{ product_names|safe }},
+      datasets: [{
+        label: '% of Inventory',
+        data: {{ product_stocks|safe }},
+        backgroundColor: [
+          '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
+          '#9966FF', '#FF9F40', '#8BC34A', '#E91E63'
+        ],
+        hoverOffset: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'right',
+        },
+        title: {
+          display: true,
+          text: 'Inventory Percentage Breakdown'
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  const ctxBar = document.getElementById('barChart').getContext('2d');
+
+  const barChart = new Chart(ctxBar, {
+    type: 'bar',
+    data: {
+      labels: {{ product_names|safe }},
+      datasets: [{
+        label: 'Quantity in Stock',
+        data: {{ product_stocks|safe }},
+        backgroundColor: {{ bar_colors|safe }},
+        borderColor: {{ bar_colors|safe }},  // border matches bar fill
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          labels: {
+            generateLabels: function(chart) {
+              return [
+                {
+                  text: 'Sufficient Stock',
+                  fillStyle: 'green',
+                  strokeStyle: 'green',
+                  lineWidth: 1
+                },
+                {
+                  text: 'Low Stock',
+                  fillStyle: 'red',
+                  strokeStyle: 'red',
+                  lineWidth: 1
+                }
+              ];
+            }
+          }
+        },
+        title: {
+          display: true,
+          text: 'Current Inventory Levels'
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Units'
+          }
+        }
+      }
+    }
+  });
+</script>
+
+
+<style>
+  .chart-sm {
+    max-width: 400px;
+    max-height: 400px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+  }
+
+  .chart-md {
+  max-width: 600px;
+  max-height: 400px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+}
+
+</style>
 {% endblock %}
