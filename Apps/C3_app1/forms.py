@@ -1,5 +1,5 @@
 from django import forms
-from .models import Sale, Product, User, Claim, Inventory, Support
+from .models import Sale, Product, User, Claim, Inventory, Support, Dealership
 
 class SalesForm(forms.ModelForm):
     class Meta:
@@ -37,20 +37,10 @@ class ProductForm(forms.ModelForm):
             'image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
 
-class InventoryForm(forms.ModelForm):
-    class Meta:
-        model = Inventory
-        fields = ['product', 'dealership', 'quantity']
-        labels = {
-            'product': 'Select product',
-            'dealership': 'Select dealership',
-            'quantity': 'Select quantity',
-        }
-        widgets = {
-            'product': forms.Select(attrs={'class': 'form-control'}),
-            'dealership': forms.Select(attrs={'class': 'form-control'}),
-            'quantity': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter quantity'}),
-        }
+class InventoryForm(forms.Form):
+    product = forms.ModelChoiceField(queryset=Product.objects.all(), widget=forms.Select(attrs={'class':'form-control'}))
+    dealership = forms.ModelChoiceField(queryset=Dealership.objects.all(), widget=forms.Select(attrs={'class':'form-control'}))
+    quantity = forms.IntegerField(min_value=1, widget=forms.NumberInput(attrs={'class':'form-control'}))
 
 class ClaimsForm(forms.ModelForm):
     class Meta:

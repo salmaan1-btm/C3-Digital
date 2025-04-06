@@ -187,14 +187,19 @@ def add_inventory(request):
 
             # Try to get or create the inventory entry
             inventory, created = Inventory.objects.get_or_create(
-                product=product, dealership=dealership, defaults={'quantity': quantity}
-            )
-
+                product=product,
+                dealership=dealership,
+                defaults={'quantity': quantity})
+            
             if not created:
-                inventory.stock += quantity  # Update the stock
+                inventory.quantity += quantity
                 inventory.save()
 
-        return redirect('C3_app1:inventory')
+            return redirect('C3_app1:dealership_inventory', dealership_id=dealership.id)
+
+        else:
+            print("Form is invalid:", form.errors)
+
     context = {'form':form}
     return render(request, 'C3_app1/add_inventory.html', context)
 
