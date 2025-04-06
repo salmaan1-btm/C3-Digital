@@ -23,7 +23,9 @@
     <div class="card-header">Account Details</div>
     <div class="card-body">
         <ul class="list-group">
-            <li class="list-group-item">Account Type: Standard</li>
+            <li class="list-group-item">
+                Account Type: {% if user.is_superuser %}Admin{% else %}Standard{% endif %}
+            </li>            
             <li class="list-group-item">Member Since: {{ user.date_joined|date:"F Y" }}</li>
         </ul>
     </div>

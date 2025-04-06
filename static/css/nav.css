@@ -9,6 +9,10 @@
     flex-direction: column;
 }
 
+body .sidebar {
+    background-color: #007BFF !important;
+}
+
 .logout-container {
     position: absolute;
     bottom: 20px;  /* Ensures it's at the bottom */
@@ -34,7 +38,7 @@
 }
 
 .logo {
-    width: 150px;  /* Adjust the width as needed */
-    height: auto;  /* Keeps the aspect ratio */
-    margin-bottom: 10px; /* Adds spacing below the logo */
+    width: 150px;  
+    height: auto;  
+    margin-bottom: 10px; 
 }
