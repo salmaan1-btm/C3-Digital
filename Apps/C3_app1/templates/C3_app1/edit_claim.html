@@ -11,5 +11,12 @@
         <button type="submit" class="btn btn-primary">Save Changes</button>
         <a href="{% url 'C3_app1:claims_detail' claim.id %}" class="btn btn-secondary">Cancel</a>
     </form>
+    {% if user.is_staff %}
+    <hr>
+    <form method="post" action="{% url 'C3_app1:claims_delete' claim.id %}" onsubmit="return confirm('Are you sure you want to delete this claim?');">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    {% endif %}
 </div>
 {% endblock %}

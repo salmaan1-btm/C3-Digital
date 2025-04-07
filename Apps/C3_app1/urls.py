@@ -11,6 +11,7 @@ urlpatterns = [
     path('claims/', views.claims, name='claims'),
     path('claims/<int:claim_id>/', views.claim_detail_view, name='claims_detail'), 
     path('claims/<int:claim_id>/edit/', views.edit_claim, name='edit_claim'),
+    path('claims/<int:claim_id>/delete/', views.claims_delete, name='claims_delete'),
     path('new_claim/', views.new_claims, name='new_claim'),
     path('claims/chart/', views.claims_chart, name='claims_chart'),
     path('inventory/', views.inventory, name='inventory'),

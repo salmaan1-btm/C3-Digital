@@ -81,6 +81,13 @@ def edit_claim(request, claim_id):
     context = {'claim': claim, 'form': form}
     return render(request, 'C3_app1/edit_claim.html', context)
 
+def claims_delete(request, claim_id):
+    claim = get_object_or_404(Claim, pk=claim_id)
+    
+    if request.method == 'POST':
+        claim.delete()
+        return redirect('C3_app1:claims')
+
 def claims_chart(request):
     # Count each claim type
     submitted = Claim.objects.filter(status='submitted').count()
