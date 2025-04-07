@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Dashboard{% endblock %}
 {% block content %}
-<h2>Dashboard</h2>
+<h2 class="page-header">Dashboard</h2>
 
 <div class="row mb-4">
     <!-- Claims Overview -->
@@ -12,7 +12,7 @@
                 {% for claim in claims %}
                 <li class="list-group-item">
                     {{ claim.name }}
-                    <a href="{% url 'C3_app1:claims_detail' claim.id %}" class="btn btn-sm btn-primary float-end">View</a>
+                    <a href="{% url 'C3_app1:claims_detail' claim.id %}" class="btn btn-sm btn-dashboard float-end">View</a>
                 </li>
                 {% empty %}
                 <li class="list-group-item">No ongoing claims.</li>
@@ -29,7 +29,7 @@
                 {% for dealership in dealerships %}
                 <li class="list-group-item">
                     {{ dealership.name }}
-                    <a href="{% url 'C3_app1:dealership_inventory' dealership.id %}" class="btn btn-sm btn-primary float-end">View</a>
+                    <a href="{% url 'C3_app1:dealership_inventory' dealership.id %}" class="btn btn-sm btn-dashboard float-end">View</a>
                 </li>
                 {% empty %}
                 <li class="list-group-item">No dealerships found.</li>
@@ -43,7 +43,7 @@
 <div class="card">
     <div 
     class="card-header">Latest Sales Transactions
-    <a href="{% url 'C3_app1:view_sales' %}" class="btn btn-sm btn-primary float-end">View All Sales</a>
+    <a href="{% url 'C3_app1:view_sales' %}" class="btn btn-sm btn-dashboard float-end">View All Sales</a>
     </div>
     
     <ul class="list-group list-group-flush">

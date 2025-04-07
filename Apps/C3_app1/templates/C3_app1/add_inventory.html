@@ -9,6 +9,6 @@
 <form action="{% url 'C3_app1:add_inventory' %}" method='post'>
     {% csrf_token %}     
     {{ form.as_p }}     
-    <button class = "btn btn-primary" name="submit">Update inventory</button>     
+    <button class = "btn btn-brown" name="submit">Update inventory</button>     
 </form>
 {% endblock %}

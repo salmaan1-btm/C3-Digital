@@ -7,6 +7,6 @@
 <form action="{% url 'C3_app1:new_product' %}" method='post' enctype="multipart/form-data">
     {% csrf_token %}     
     {{ form.as_p }}     
-    <button class = "btn btn-primary" name="submit">Add product</button>     
+    <button class = "btn btn-brown" name="submit">Add product</button>     
 </form>
 {% endblock content %}

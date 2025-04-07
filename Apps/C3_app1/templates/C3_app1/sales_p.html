@@ -3,12 +3,12 @@
 {% block content %}
 
 <header>
-    <h1>Sales Portal</h1>
+    <h1 class="page-header">Sales Portal</h1>
 </header>
 <p>The Sales Portal helps you keep track of your sales and allows for new sales to be added.</p>
-<div class="d-grid gap-2">
-        <a href="{% url 'C3_app1:view_sales' %}" class="btn btn-primary btn-block text-decoration-none link-light"> View sales transactions</a>
-        <a href="{% url 'C3_app1:new_sales' %}" class="btn btn-primary btn-block text-decoration-none link-light"> Add a new sales transaction</a>
-        <a href="{% url 'C3_app1:inventory' %}" class="btn btn-primary btn-block text-decoration-none link-light"> Manage inventories</a>
+<div class="d-grid gap-4">
+        <a href="{% url 'C3_app1:view_sales' %}" class="btn btn-brown"> View sales transactions</a>
+        <a href="{% url 'C3_app1:new_sales' %}" class="btn btn-brown"> Add a new sales transaction</a>
+        <a href="{% url 'C3_app1:inventory' %}" class="btn btn-brown"> Manage inventories</a>
 </div>
 {% endblock content %}

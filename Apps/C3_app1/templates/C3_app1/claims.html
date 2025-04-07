@@ -1,11 +1,12 @@
 {% extends "base.html" %}
-
 {% block title %}Claims Processing - C3{% endblock %}
-
 {% block content %}
+
+<header>
+    <h1 class="page-header">Claims Processing</h1>
+</header>
 <div class="container mt-4">
-    <h2>Claims Processing</h2>
-    <a href="{% url 'C3_app1:new_claim' %}" class="btn btn-outline-secondary mb-3">Create Claim</a>
+    <a href="{% url 'C3_app1:new_claim' %}" class="btn btn-brown mb-3">Create Claim</a>
     <div class="text-center mb-4">
         <img src="{% url 'C3_app1:claims_chart' %}" alt="Claims Chart" class="img-fluid">
     </div>
