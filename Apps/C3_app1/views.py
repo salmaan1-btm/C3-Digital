@@ -8,7 +8,9 @@ from io import BytesIO
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+import numpy as np
 import base64
+import seaborn as sns
 
 # Create your views here.
 
@@ -131,12 +133,64 @@ def new_sales(request):
     context = {'form' : form}
     return render(request, 'C3_app1/new_sales.html', context)
 
+
 @login_required
 def view_sales(request):
-    """Displays all sales transactions."""
+    """Displays all sales transactions and renders a modern sales summary chart."""
     saleslist = Sale.objects.all().order_by('-id')
-    context={'view_sales':saleslist}
-    return render(request, 'C3_app1/view_sales.html',context)
+
+    # Aggregate quantities sold per product
+    sales_summary = {}
+    for sale in saleslist:
+        product_name = sale.inventory.product.name
+        sales_summary[product_name] = sales_summary.get(product_name, 0) + sale.quantity
+
+    # Modern styling
+    sns.set_theme(style="whitegrid")
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    # Teal color gradient (brand match)
+    colors = plt.cm.cubehelix(np.linspace(0.4, 0.7, len(sales_summary)))
+    bars = ax.bar(sales_summary.keys(), sales_summary.values(), color=colors, edgecolor='white', linewidth=1.5)
+
+    # Titles & Labels
+    ax.set_title("📊 Total Sales Quantity by Product", fontsize=18, fontweight='bold', pad=20)
+    ax.set_xlabel("Product", fontsize=12, labelpad=10)
+    ax.set_ylabel("Quantity Sold", fontsize=12, labelpad=10)
+    ax.tick_params(axis='x', labelsize=10, rotation=25)
+    ax.tick_params(axis='y', labelsize=10)
+
+    # Rounded edges & annotation
+    for bar in bars:
+        height = bar.get_height()
+        ax.annotate(f'{int(height)}',
+                    xy=(bar.get_x() + bar.get_width() / 2, height),
+                    xytext=(0, 3),
+                    textcoords="offset points",
+                    ha='center', va='bottom', fontsize=10, fontweight='bold')
+
+    # Remove clutter
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+
+    # Grid styling
+    ax.yaxis.grid(True, linestyle='--', linewidth=0.5)
+    ax.xaxis.grid(False)
+
+    # Save to buffer
+    buffer = BytesIO()
+    plt.tight_layout()
+    plt.savefig(buffer, format='png', dpi=300)
+    plt.close(fig)
+    buffer.seek(0)
+
+    image_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
+    context = {
+        'view_sales': saleslist,
+        'sales_chart': image_base64
+    }
+
+    return render(request, 'C3_app1/view_sales.html', context)
 
 
 @login_required

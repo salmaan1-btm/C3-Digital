@@ -17,7 +17,11 @@ body .sidebar {
 
 .logout-container {
     position: absolute;
-    bottom: 20px;  /* Ensures it's at the bottom */
+    bottom: 20px;
+    left: 10px;
+    right: 10px;
+    text-align: center;
+    padding: 0 10px;
 }
 
 .sidebar .navbar-nav {
@@ -70,4 +74,29 @@ body .sidebar {
     margin-bottom: 20px;
     margin-top: 10px;
     text-decoration: none;
+}
+
+
+.logout-container .nav-link {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 25px;
+    background-color: #ffffff;
+    color: #008080;
+    display: block;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.logout-container .nav-link:hover {
+    background-color: #20b2aa;
+    color: #ffffff;
+}
+
+.logout-link {
+    width: 100%;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
