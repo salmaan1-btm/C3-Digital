@@ -21,10 +21,10 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column sidebar">
             <div class="container-fluid d-flex flex-column align-items-start">
                 <!-- Logo at the top -->
-                <a class="navbar-brand text-white fw-bold fs-4" href="{% url 'C3_app1:index' %}">
-                    C3 Digital
+                <a class="navbar-brand mb-0 mx-auto" href="{% url 'C3_app1:index' %}">
+                    <img src="{% static 'images/c3_logo.png' %}" alt="C3 Logo" class="logo">
                 </a>
-                <a class="navbar-brand" href="{% url 'C3_app1:index' %}">Welcome!</a>
+                <a class="navbar-brand mt-0" href="{% url 'C3_app1:index' %}">Welcome!</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
