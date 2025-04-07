@@ -96,7 +96,7 @@ def claims_chart(request):
 
     labels = ['Submitted', 'Initiated', 'Rejected']
     values = [submitted, initiated, rejected]
-    colors = ['#0d6efd', '#ffc107', '#dc3545']
+    colors = ['#20c997', '#0ca275', '#0d7455']
 
     # Plot setup
     plt.figure(figsize=(6, 4))
