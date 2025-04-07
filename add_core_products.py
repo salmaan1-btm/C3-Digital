@@ -23,31 +23,31 @@ def add_core_products():
             'name': 'Rust Protection',
             'description': 'Prevents corrosion and rust on vehicle underbodies and key components.',
             'price': 150.00,
-            'image': 'images/rust_protection.jpg'
+            'image': 'rust_protection.jpg'
         },
         {
             'name': 'Paint Protection',
             'description': 'Protects the vehicle’s exterior paint from UV rays, pollutants, and minor abrasions.',
             'price': 300.00,
-            'image': 'images/paint_protection.jpg'
+            'image': 'paint_protection.jpg'
         },
         {
             'name': 'Fabric Protection',
             'description': 'Shields fabric and upholstery from stains, spills, and daily wear and tear.',
             'price': 100.00,
-            'image': 'images/fabric_protection.jpg'
+            'image': 'fabric_protection.jpg'
         },
         {
             'name': 'VIN Etching',
             'description': 'Enhances theft deterrence by etching the vehicle’s VIN on windows and parts.',
             'price': 50.00,
-            'image': 'images/vin_etching.jpg'
+            'image': 'vin_etching.jpg'
         },
         {
             'name': 'Extended Warranty',
             'description': 'Provides long-term protection on major vehicle components beyond factory warranty.',
             'price': 1250.00,
-            'image': 'images/extended_warranty.jpg'
+            'image': 'extended_warranty.jpg'
         }
     ]
 

@@ -11,5 +11,3 @@ __pycache__/
 /C3_Venv
 .DS_Store
 
-# Ignore Personal Media Files
-/Media
