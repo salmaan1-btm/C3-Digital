@@ -48,7 +48,7 @@
                     </div>
                     
                       <!-- Logout button forced to the bottom -->
-                      <div class="logout-container w-100">
+                      <div class="logout-container w-70">
                         <a class="nav-link {% if request.path == '/support/' %}active{% endif %}" href="{% url 'C3_app1:support' %}">
                             <i class="bi bi-question-circle me-2"></i> Support
                         </a>
@@ -57,7 +57,7 @@
                         </a>
                         <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
-                            <button type="submit" class="nav-link logout-link w-100 text-start">
+                            <button type="submit" class="nav-link logout-link w-60 text-start">
                                 <i class="bi bi-box-arrow-right me-2"></i> Logout
                             </button>
                         </form>

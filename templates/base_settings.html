@@ -20,9 +20,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column sidebar">
             <div class="container-fluid d-flex flex-column align-items-start">
                 <!-- Logo at the top -->
-                <a class="navbar-brand" href="#">
-                    <img src="{% static 'images/logo.jpg' %}" alt="C3 Logo" class="logo">
-                </a>
+
                 <a class="navbar-brand" href="#">Settings</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +39,9 @@
 
                         <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-secondary btn-sm w-100">Logout</button>
+                            <button type="submit" class="nav-link logout-link w-60 text-start">
+                                <i class="bi bi-box-arrow-right me-2"></i> Logout
+                            </button>
                         </form>
                     </div>
                 </div>
