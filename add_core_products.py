@@ -10,36 +10,43 @@ django.setup()
 # Now import your models after setting up Django settings
 from Apps.C3_app1.models import Product
 
+# Image credits
+# https://www.noxudolusa.com/wp-content/uploads/2017/06/rustproofing-your-car.jpg
+# https://www.bemac.ca/wp-content/uploads/2022/05/Paint-Protection-Film-1024x683.jpg
+# https://masterguardsa.co.za/wp-content/uploads/2017/10/fibre_protect.jpg
+# https://www.instaetch.com/images/high%20resolution%20vin%20etching.jpg
+# https://www.carpro.com/hs-fs/hubfs/extended-warranty-shutterstock.jpg?width=1020&name=extended-warranty-shutterstock.jpg
+
 def add_core_products():
     core_products = [
         {
             'name': 'Rust Protection',
             'description': 'Prevents corrosion and rust on vehicle underbodies and key components.',
-            'price': 0.00,
+            'price': 150.00,
             'image': 'images/rust_protection.jpg'
         },
         {
             'name': 'Paint Protection',
             'description': 'Protects the vehicle’s exterior paint from UV rays, pollutants, and minor abrasions.',
-            'price': 0.00,
+            'price': 300.00,
             'image': 'images/paint_protection.jpg'
         },
         {
             'name': 'Fabric Protection',
             'description': 'Shields fabric and upholstery from stains, spills, and daily wear and tear.',
-            'price': 0.00,
+            'price': 100.00,
             'image': 'images/fabric_protection.jpg'
         },
         {
             'name': 'VIN Etching',
             'description': 'Enhances theft deterrence by etching the vehicle’s VIN on windows and parts.',
-            'price': 0.00,
+            'price': 50.00,
             'image': 'images/vin_etching.jpg'
         },
         {
             'name': 'Extended Warranty',
             'description': 'Provides long-term protection on major vehicle components beyond factory warranty.',
-            'price': 0.00,
+            'price': 1250.00,
             'image': 'images/extended_warranty.jpg'
         }
     ]
