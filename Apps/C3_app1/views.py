@@ -282,7 +282,7 @@ def new_product(request):
         form = ProductForm(data = request.POST, files = request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('C3_app1:sales_p')
+            return redirect('C3_app1:view_products')
     # Display a blank or invalid form.
     context = {'form' : form}
     return render(request, 'C3_app1/new_product.html', context)
