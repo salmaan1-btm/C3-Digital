@@ -13,9 +13,9 @@ from Apps.C3_app1.models import Product
 # Image credits
 # https://www.noxudolusa.com/wp-content/uploads/2017/06/rustproofing-your-car.jpg
 # https://www.bemac.ca/wp-content/uploads/2022/05/Paint-Protection-Film-1024x683.jpg
-# https://masterguardsa.co.za/wp-content/uploads/2017/10/fibre_protect.jpg
+# https://parkers-images.bauersecure.com/wp-images/308499/930x620/best_fabric_protectors.jpg
 # https://www.instaetch.com/images/high%20resolution%20vin%20etching.jpg
-# https://www.carpro.com/hs-fs/hubfs/extended-warranty-shutterstock.jpg?width=1020&name=extended-warranty-shutterstock.jpg
+# https://flexmobile.ca/cdn/shop/products/shutterstock_236312680-1_500x.jpg?v=1646785240
 
 def add_core_products():
     core_products = [
@@ -23,31 +23,31 @@ def add_core_products():
             'name': 'Rust Protection',
             'description': 'Prevents corrosion and rust on vehicle underbodies and key components.',
             'price': 150.00,
-            'image': 'rust_protection.jpg'
+            'image': 'core_products/rust_protection.jpg'
         },
         {
             'name': 'Paint Protection',
             'description': 'Protects the vehicle’s exterior paint from UV rays, pollutants, and minor abrasions.',
             'price': 300.00,
-            'image': 'paint_protection.jpg'
+            'image': 'core_products/paint_protection.jpg'
         },
         {
             'name': 'Fabric Protection',
             'description': 'Shields fabric and upholstery from stains, spills, and daily wear and tear.',
             'price': 100.00,
-            'image': 'fabric_protection.jpg'
+            'image': 'core_products/fabric_protection.jpg'
         },
         {
             'name': 'VIN Etching',
             'description': 'Enhances theft deterrence by etching the vehicle’s VIN on windows and parts.',
             'price': 50.00,
-            'image': 'vin_etching.jpg'
+            'image': 'core_products/vin_etching.jpg'
         },
         {
             'name': 'Extended Warranty',
             'description': 'Provides long-term protection on major vehicle components beyond factory warranty.',
             'price': 1250.00,
-            'image': 'extended_warranty.jpg'
+            'image': 'core_products/extended_warranty.jpg'
         }
     ]
 
