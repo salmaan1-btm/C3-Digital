@@ -10,6 +10,7 @@
     {% load static %}  
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}"> 
     <link rel="stylesheet" href="{% static 'css/nav.css' %}"> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
 </head>  
 <body>
@@ -29,14 +30,17 @@
                 <div class="collapse navbar-collapse show" id="navbarNavAltMarkup">
                     <div class="navbar-nav flex-column">
                         <p class="nav-link">Hello, {{ user.username }}</p>
-                        <a class="nav-link active" aria-current="page" href="{% url 'C3_app1:settings' %}">Account Information</a>
-                        <a class="nav-link" href="{% url 'C3_app1:password_change' %}">Change Password</a>
+                        <a class="nav-link {% if request.path == '/settings/' %}active{% endif %}" aria-current="page" href="{% url 'C3_app1:settings' %}">Account Information</a>
+                        <a class="nav-link {% if request.path == '/password_change/' %}active{% endif %}" href="{% url 'C3_app1:password_change' %}">Change Password</a>
                     </div>
                       <!-- Logout button forced to the bottom -->
-                    <div class="logout-container">
-                        <a class="nav-link" href="{% url 'C3_app1:support' %}">Support</a>
-                        <a class="nav-link" href="{% url 'C3_app1:index' %}">Dashboard</a>
-
+                    <div class="logout-container mt-auto d-flex flex-column align-items-start w-100">
+                        <a class="nav-link text-start {% if request.path == '/support/' %}active{% endif %}" href="{% url 'C3_app1:support' %}">
+                            <i class="bi bi-question-circle me-2"></i> Support
+                        </a>
+                        <a class="nav-link text-start {% if request.path == '/index/' %}active{% endif %}" href="{% url 'C3_app1:index' %}">
+                            <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                        </a>
                         <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
                             <button type="submit" class="nav-link logout-link w-60 text-start">

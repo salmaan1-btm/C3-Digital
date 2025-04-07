@@ -48,11 +48,11 @@
                     </div>
                     
                       <!-- Logout button forced to the bottom -->
-                      <div class="logout-container w-70">
-                        <a class="nav-link {% if request.path == '/support/' %}active{% endif %}" href="{% url 'C3_app1:support' %}">
+                      <div class="logout-container mt-auto d-flex flex-column align-items-start w-100">
+                        <a class="nav-link text-start {% if request.path == '/support/' %}active{% endif %}" href="{% url 'C3_app1:support' %}">
                             <i class="bi bi-question-circle me-2"></i> Support
                         </a>
-                        <a class="nav-link {% if request.path == '/settings/' %}active{% endif %}" href="{% url 'C3_app1:settings' %}">
+                        <a class="nav-link text-start {% if request.path == '/settings/' %}active{% endif %}" href="{% url 'C3_app1:settings' %}">
                             <i class="bi bi-gear me-2"></i> Settings
                         </a>
                         <form method="post" action="{% url 'logout' %}">

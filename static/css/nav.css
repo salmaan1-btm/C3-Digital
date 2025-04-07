@@ -81,16 +81,14 @@ body .sidebar {
     padding: 10px 15px;
     font-size: 1rem;
     border-radius: 25px;
-    background-color: #ffffff;
-    color: #008080;
+    color: #ffffff;
     display: block;
     transition: all 0.3s ease;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
 .logout-container .nav-link:hover {
-    background-color: #20b2aa;
-    color: #ffffff;
+    background-color: #ffffff;
+    color:#20b2aa ;
 }
 
 .logout-link {
