@@ -42,23 +42,7 @@ class Sale(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date_added = models.DateField(auto_now_add=True)
     
-    def clean(self):
-        """Ensure enough stock is available before completing a sale."""
-        if self.inventory.quantity < self.quantity:
-            raise ValidationError("Not enough stock available for this sale.")
-        """Ensure product is from the right dealership"""
-        if self.dealership != self.inventory.dealership:
-            raise ValidationError("Dealership does not match Inventory.") 
-        """Ensure sale quantity is greater than zero"""
-        if self.quantity <=0:
-            raise ValidationError("Quantity must be greater than 0.")
-    def save(self, *args, **kwargs):
-        self.clean()
-        if self.inventory.quantity < self.quantity:
-            raise ValidationError("Not enough stock available.")
-        self.inventory.quantity -= self.quantity
-        self.inventory.save()
-        super().save(*args, **kwargs)
+
     def __str__(self):
         # Return a string representation of the model
         return f" {self.inventory.dealership.name} - {self.inventory.product.name} - {self.quantity} units"
