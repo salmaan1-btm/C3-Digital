@@ -128,17 +128,26 @@ def sales_p(request):
 def new_sales(request):
     """ Add a new Sales Transaction through a form."""
     if request.method != 'POST':
-        #no data submitted; create a blank form.
         form = SalesForm()
     else:
-        #POST data submitted; process data.
-        form = SalesForm(data = request.POST)
+        form = SalesForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            sale = form.save(commit=False)
+            
+            inventory = sale.inventory  # Link to Inventory instance
+            if inventory.quantity < sale.quantity:
+                messages.error(request, "Not enough stock available for this sale.")
+                return redirect('C3_app1:new_sales')
+
+            # Deduct inventory
+            inventory.quantity -= sale.quantity
+            inventory.save()
+            sale.save()
             return redirect('C3_app1:sales_p')
-    # Display a blank or invalid form.
-    context = {'form' : form}
+
+    context = {'form': form}
     return render(request, 'C3_app1/new_sales.html', context)
+   
 
 
 @login_required
