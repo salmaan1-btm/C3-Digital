@@ -26,6 +26,7 @@ urlpatterns = [
     path('new_product/', views.new_product, name = 'new_product'),
     path('edit_product/<int:product_id>/', views.edit_product, name = 'edit_product'),
     path('inventory/dealership/<int:dealership_id>/', views.dealership_inventory, name='dealership_inventory'),
+    path('inventory/dealership/<int:dealership_id>/chart/', views.dealership_inventory_chart, name='dealership_inventory_chart'),
     path("support/", views.support_view, name="support"),
     path('password_change/', auth_views.PasswordChangeView.as_view(template_name='C3_app1/password_change.html',success_url=reverse_lazy('C3_app1:password_change_done')),name='password_change'),
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='C3_app1/password_change_done.html'), name='password_change_done'),

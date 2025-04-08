@@ -96,7 +96,7 @@ def claims_chart(request):
 
     labels = ['Submitted', 'Initiated', 'Rejected']
     values = [submitted, initiated, rejected]
-    colors = ['#20c997', '#0ca275', '#0d7455']
+    colors = ['#a0d9d5','#20c997', '#f7c6c7']
 
     # Plot setup
     plt.figure(figsize=(6, 4))
@@ -173,7 +173,7 @@ def sales_chart(request):
     plt.xticks(rotation=0, ha="center")
     plt.title("Total Products Sold")
     plt.ylabel("Quantity Sold" , fontsize=12, labelpad=16)
-    plt.xlabel("Product")
+    #plt.xlabel("Product")
     plt.tight_layout()
 
     buffer = BytesIO()
@@ -194,6 +194,46 @@ def dealership_inventory(request, dealership_id):
         'dealership': dealership,
         'inventory_items': inventory_items
     })
+
+
+
+@login_required
+def dealership_inventory_chart(request, dealership_id):
+    dealership = get_object_or_404(Dealership, id=dealership_id)
+    inventory_items = Inventory.objects.filter(dealership=dealership).select_related('product')
+
+    if not inventory_items:
+        return HttpResponse("No inventory data available", content_type="text/plain")
+
+    labels = []
+    values = []
+    bar_colors = []
+
+    for item in inventory_items:
+        labels.append(item.product.name)
+        values.append(item.quantity)
+        if item.quantity < item.product.reorder_threshold:
+            bar_colors.append('#f7c6c7')  # pastel pink
+        else:
+            bar_colors.append('#a0d9d5')  # pastel teal
+
+    plt.figure(figsize=(8, 4))
+    sns.barplot(x=labels, y=values, palette=bar_colors)
+    plt.xticks(rotation=0, ha='center')
+    
+    plt.ylabel('Stock Level', fontsize=12, labelpad=16)
+    #plt.xlabel('Product', fontsize=12, labelpad=16)
+    plt.tight_layout()
+
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    plt.close()
+    buffer.seek(0)
+
+    return HttpResponse(buffer.getvalue(), content_type='image/png')
+
+
+
 
 @login_required
 def add_inventory(request):

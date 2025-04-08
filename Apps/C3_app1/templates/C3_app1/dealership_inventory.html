@@ -3,7 +3,16 @@
 {% block content %}
 <div class="container mt-5">
 
-  <h1 class="page-header" style="margin-bottom: 40px;">{{ dealership.name }} – Inventory</h1>
+  <h1 class="page-header" style="margin-bottom: 60px;">{{ dealership.name }} – Inventory</h1>
+  <div class="text-center mt-3">
+    <span style="background-color: #f7c6c7; padding: 5px 10px; border-radius: 10px;">Low Stock</span>
+    <span style="background-color: #a0d9d5; padding: 5px 10px; border-radius: 10px; margin-left: 10px;">Sufficient Stock</span>
+  </div>
+  
+<div class="text-center">
+    <img src="{% url 'C3_app1:dealership_inventory_chart' dealership.id %}" alt="Inventory Chart" class="img-fluid rounded shadow-sm mt-2">
+</div>
+
   {% if inventory_items %}
   <table class="table table-striped">
     <thead>
