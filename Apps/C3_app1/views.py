@@ -187,34 +187,13 @@ def sales_chart(request):
 
 @login_required
 def dealership_inventory(request, dealership_id):
-    """Displays products for a specific dealership with a stock doughnut chart."""
+    """Displays products for a specific dealership."""
     dealership = Dealership.objects.get(id=dealership_id)
     inventory_items = Inventory.objects.filter(dealership=dealership)
-
-    # Prepare data for the doughnut chart
-    product_names = [item.product.name for item in inventory_items]
-    raw_stocks = [item.quantity for item in inventory_items]
-    total_stock = sum(raw_stocks) or 1  # Avoid division by zero
-    product_stocks = [round((qty / total_stock) * 100, 2) for qty in raw_stocks]
-    reorder_thresholds = [item.product.reorder_threshold for item in inventory_items]
-
-    bar_colors = [
-    'rgba(0, 128, 0, 0.8)' if item.quantity > item.product.reorder_threshold  # green for sufficient
-    else 'rgba(255, 0, 0, 0.8)'  # red for low stock
-    for item in inventory_items
-]
-
-
-    context = {
+    return render(request, 'C3_app1/dealership_inventory.html', {
         'dealership': dealership,
-        'inventory_items': inventory_items,
-        'product_names': product_names,
-        'product_stocks': product_stocks,
-        'reorder_thresholds': reorder_thresholds,
-        'bar_colors': bar_colors,
-    }
-
-    return render(request, 'C3_app1/dealership_inventory.html', context)
+        'inventory_items': inventory_items
+    })
 
 @login_required
 def add_inventory(request):
