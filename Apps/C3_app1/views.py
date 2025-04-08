@@ -145,61 +145,44 @@ def new_sales(request):
 
 @login_required
 def view_sales(request):
-    """Displays all sales transactions and renders a modern sales summary chart."""
+    """Displays all sales transactions."""
     saleslist = Sale.objects.all().order_by('-id')
+    context={'view_sales':saleslist}
+    return render(request, 'C3_app1/view_sales.html',context)
 
-    # Aggregate quantities sold per product
-    sales_summary = {}
-    for sale in saleslist:
+@login_required
+def sales_chart(request):
+    from .models import Sale
+
+    # Gather total sales quantity per product
+    product_sales = {}
+    for sale in Sale.objects.select_related('inventory__product'):
         product_name = sale.inventory.product.name
-        sales_summary[product_name] = sales_summary.get(product_name, 0) + sale.quantity
+        product_sales[product_name] = product_sales.get(product_name, 0) + sale.quantity
 
-    # Modern styling
-    sns.set_theme(style="whitegrid")
-    fig, ax = plt.subplots(figsize=(10, 6))
+    if not product_sales:
+        return HttpResponse("No sales data available", content_type="text/plain")
 
-    # Teal color gradient (brand match)
-    colors = plt.cm.cubehelix(np.linspace(0.4, 0.7, len(sales_summary)))
-    bars = ax.bar(sales_summary.keys(), sales_summary.values(), color=colors, edgecolor='white', linewidth=1.5)
+    labels = list(product_sales.keys())
+    values = list(product_sales.values())
+    colors = sns.color_palette("pastel", len(labels))
 
-    # Titles & Labels
-    ax.set_title("📊 Total Sales Quantity by Product", fontsize=18, fontweight='bold', pad=20)
-    ax.set_xlabel("Product", fontsize=12, labelpad=10)
-    ax.set_ylabel("Quantity Sold", fontsize=12, labelpad=10)
-    ax.tick_params(axis='x', labelsize=10, rotation=25)
-    ax.tick_params(axis='y', labelsize=10)
-
-    # Rounded edges & annotation
-    for bar in bars:
-        height = bar.get_height()
-        ax.annotate(f'{int(height)}',
-                    xy=(bar.get_x() + bar.get_width() / 2, height),
-                    xytext=(0, 3),
-                    textcoords="offset points",
-                    ha='center', va='bottom', fontsize=10, fontweight='bold')
-
-    # Remove clutter
-    ax.spines['right'].set_visible(False)
-    ax.spines['top'].set_visible(False)
-
-    # Grid styling
-    ax.yaxis.grid(True, linestyle='--', linewidth=0.5)
-    ax.xaxis.grid(False)
-
-    # Save to buffer
-    buffer = BytesIO()
+    # Generate the bar chart
+    plt.figure(figsize=(9, 5))
+    sns.barplot(x=labels, y=values, palette=colors)
+    plt.xticks(rotation=0, ha="center")
+    plt.title("Total Products Sold")
+    plt.ylabel("Quantity Sold" , fontsize=12, labelpad=16)
+    plt.xlabel("Product")
     plt.tight_layout()
-    plt.savefig(buffer, format='png', dpi=300)
-    plt.close(fig)
+
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    plt.close()
     buffer.seek(0)
 
-    image_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
-    context = {
-        'view_sales': saleslist,
-        'sales_chart': image_base64
-    }
+    return HttpResponse(buffer.getvalue(), content_type='image/png')
 
-    return render(request, 'C3_app1/view_sales.html', context)
 
 
 @login_required
