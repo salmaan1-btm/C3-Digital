@@ -132,18 +132,10 @@ def new_sales(request):
     else:
         form = SalesForm(data=request.POST)
         if form.is_valid():
-            sale = form.save(commit=False)
-            
-            inventory = sale.inventory  # Link to Inventory instance
-            if inventory.quantity < sale.quantity:
-                messages.error(request, "Not enough stock available for this sale.")
-                return redirect('C3_app1:new_sales')
+            form.save()
 
-            # Deduct inventory
-            inventory.quantity -= sale.quantity
-            inventory.save()
-            sale.save()
-            return redirect('C3_app1:sales_p')
+            
+
 
     context = {'form': form}
     return render(request, 'C3_app1/new_sales.html', context)
