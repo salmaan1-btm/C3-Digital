@@ -2,7 +2,7 @@
 {% block title %}New Product{% endblock %}
 {% block content %}     
 <header>
-    <h1>Add a new product</h1>
+    <h1 class="page-header" style="margin-bottom: 30px;">Add a new product</h1>
 </header>  
 <form action="{% url 'C3_app1:new_product' %}" method='post' enctype="multipart/form-data">
     {% csrf_token %}     

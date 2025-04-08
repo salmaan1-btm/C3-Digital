@@ -102,7 +102,7 @@ def claims_chart(request):
     plt.figure(figsize=(6, 4))
     plt.bar(labels, values, color=colors)
     plt.title('Claims Overview')
-    plt.ylabel('Number of Claims')
+    plt.ylabel('Number of Claims', fontsize=12, labelpad=16)
 
     # Render to BytesIO
     buffer = BytesIO()

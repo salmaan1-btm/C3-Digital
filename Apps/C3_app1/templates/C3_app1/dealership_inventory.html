@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container mt-5">
 
-  <h2 class="mb-4">{{ dealership.name }} – Inventory</h2>
+  <h1 class="page-header" style="margin-bottom: 40px;">{{ dealership.name }} – Inventory</h1>
   {% if inventory_items %}
   <table class="table table-striped">
     <thead>
@@ -25,7 +25,7 @@
       {% endfor %}
     </tbody>
   </table>
-  <h4 class="mt-5">Stock Distribution by Product</h4>
+  <h4 class="mt-5">Product Distribution</h4>
   <canvas id="stockChart" class="chart-sm"></canvas>
   <h4 class="mt-5">Inventory Levels by Product</h4>
   <canvas id="barChart" class="chart-md"></canvas>

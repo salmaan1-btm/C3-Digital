@@ -4,7 +4,7 @@
 
 {% block content %}
 <header>
-    <h1>Update Inventory</h1>
+    <h1 class="page-header" style="margin-bottom: 50px;">Update Inventory</h1>
 </header>
 <form action="{% url 'C3_app1:add_inventory' %}" method='post'>
     {% csrf_token %}     

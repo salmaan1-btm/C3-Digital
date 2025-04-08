@@ -2,7 +2,7 @@
 {% block title %}Edit {{product.name}} {% endblock %}
 {% block content %}
 
-<p>Edit product:</p>
+<h1 class="page-header" style="margin-bottom: 30px;">Edit product:</h1>
 <form action ="{% url 'C3_app1:edit_product' product.id %}" method='post' enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
