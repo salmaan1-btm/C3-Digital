@@ -133,6 +133,7 @@ def new_sales(request):
         form = SalesForm(data=request.POST)
         if form.is_valid():
             form.save()
+            return redirect('C3_app1:sales_p')
 
             
 
