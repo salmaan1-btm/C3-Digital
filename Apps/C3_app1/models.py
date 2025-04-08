@@ -71,7 +71,8 @@ class Claim(models.Model):
     ]
 
     name = models.CharField(max_length=255)  
-    description = models.TextField(blank=True, null=True)  
+    description = models.TextField(blank=True, null=True)
+    dealership = models.ForeignKey(Dealership, on_delete=models.CASCADE)  
     user = models.ForeignKey(User, on_delete=models.CASCADE)  
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='submitted')  
     created_at = models.DateTimeField(auto_now_add=True)  

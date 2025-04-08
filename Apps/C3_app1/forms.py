@@ -45,16 +45,18 @@ class InventoryForm(forms.Form):
 class ClaimsForm(forms.ModelForm):
     class Meta:
         model = Claim
-        fields = ['name', 'description', 'user', 'status']
+        fields = ['name', 'description', 'dealership', 'user', 'status']
         labels = {
             'name': 'Claim name',
             'description': 'Description',
+            'dealership': 'Select dealership',
             'user': 'Enter user',
             'status': 'Select claim status',
         }
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter claim name'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Enter description'}),
+            'dealership': forms.Select(attrs={'class': 'form-control'}),
             'user': forms.Select(attrs={'class': 'form-control'}),  
             'status': forms.Select(choices=Claim.STATUS_CHOICES)
         }

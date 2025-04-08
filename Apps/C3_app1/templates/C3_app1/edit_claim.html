@@ -8,7 +8,7 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <button type="submit" class="btn btn-brown">Save Changes</button>
         <a href="{% url 'C3_app1:claims_detail' claim.id %}" class="btn btn-secondary">Cancel</a>
     </form>
     {% if user.is_staff %}
