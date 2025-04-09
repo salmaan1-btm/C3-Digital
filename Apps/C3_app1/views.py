@@ -189,6 +189,55 @@ def sales_chart(request):
 
 
 
+
+@login_required
+def inventory_distribution_chart(request):
+    from matplotlib.patches import Patch
+    dealerships = Dealership.objects.all()
+    inventory_data = Inventory.objects.select_related('dealership')
+
+    # Aggregate inventory totals by dealership
+    totals = {}
+    for item in inventory_data:
+        name = item.dealership.name
+        totals[name] = totals.get(name, 0) + item.quantity
+
+    if not totals:
+        return HttpResponse("No inventory data available", content_type="text/plain")
+
+    labels = list(totals.keys())
+    values = list(totals.values())
+    colors = sns.color_palette("pastel", len(labels))
+
+    # Create pie chart
+    plt.figure(figsize=(8, 6))
+    wedges, texts, autotexts = plt.pie(
+        values,
+        labels=None,  # Remove labels from the pie itself
+        autopct='%1.1f%%',
+        colors=colors,
+        startangle=90,
+        wedgeprops={'linewidth': 1, 'edgecolor': 'white'}
+    )
+
+    # Create custom legend patches
+    legend_elements = [Patch(facecolor=colors[i], label=f"{labels[i]}") for i in range(len(labels))]
+    plt.legend(handles=legend_elements, title="Dealerships", loc='center left', bbox_to_anchor=(1, 0.5))
+
+    #plt.title("Inventory Distribution by Dealership")
+    plt.tight_layout()
+
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png', bbox_inches='tight')  # Ensure legend doesn't get cut off
+    plt.close()
+    buffer.seek(0)
+
+    return HttpResponse(buffer.getvalue(), content_type='image/png')
+
+
+
+
+
 @login_required
 def daily_revenue_chart(request):
     from collections import defaultdict

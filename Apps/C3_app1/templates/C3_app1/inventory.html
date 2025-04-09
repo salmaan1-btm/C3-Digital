@@ -29,5 +29,11 @@
     {% endfor %}
   </div>
 </div>
+
+<div class="chart-container d-flex flex-column align-items-center mt-5">
+  <h2 class="mb-4">Inventory Distribution Overview</h2>
+  <img src="{% url 'C3_app1:inventory_distribution_chart' %}" alt="Inventory Distribution Pie Chart" class="img-fluid" style="max-width: 600px;" />
+</div>
+
 {% endblock %}
 
