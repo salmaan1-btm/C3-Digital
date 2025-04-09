@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
 def default_product_image():
-    return 'static/images/logo.jpg'
+    return 'static/images/stock.jpg'
 # Create your models here.
 
 class Dealership(models.Model):
