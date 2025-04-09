@@ -243,14 +243,14 @@ def daily_revenue_chart(request):
         plt.figure(figsize=(10, 4))
         plt.plot(labels, revenues, marker='o', linestyle='-', color="#20c997", linewidth=2)
         plt.title(title, fontsize=14)
-        plt.xlabel("Date", fontsize=12)
-        plt.ylabel("Revenue ($)", fontsize=12)
+        plt.xlabel(" ", fontsize=12, labelpad = 10)
+        plt.ylabel("Revenue ($)", fontsize=14, labelpad = 20)
         plt.grid(True, linestyle='--', alpha=0.5)
 
         ax = plt.gca()
         ax.xaxis.set_major_locator(MaxNLocator(nbins=10, prune='both'))
         ax.set_xticks(labels)
-        ax.set_xticklabels([label.strftime(label_format) for label in labels], rotation=30)
+        ax.set_xticklabels([label.strftime(label_format) for label in labels], rotation=0)
 
         plt.tight_layout()
 

@@ -1,0 +1,21 @@
+name,description,price,dealership
+Honda Civic,Compact car,22000,C3 Montreal
+Toyota Corolla,Reliable sedan,abc,C3 Montreal
+Ford F-150,Pickup truck,35000,C3 Toronto
+,Missing name,18000,
+Nissan Altima,Midsize sedan,-15000,C3 Toronto
+,Luxury sedan,41000,C3 Montreal
+Tesla Model 3,Electric sedan,48000,C3 Montreal
+Chevrolet Malibu,Midsize car,23000,Nonexistent Dealer
+Mazda CX-5,SUV,27000,C3 Toronto
+Kia Sorento,SUV,,C3 Vancouver
+Hyundai Elantra,Economy car,20000,C3 Montreal
+Jeep Wrangler,Off-road vehicle,37000,C3 Toronto
+Subaru Forester,All-wheel drive SUV,31000,C3 Toronto
+Volkswagen Golf,Hatchback,25000,C3 Montreal
+Acura TLX,Luxury sedan,39000,C3 Montreal
+Honda Accord,Full-size sedan,27000,C3 Montreal
+Ford Explorer,SUV,34000,C3 Toronto
+Chevrolet Tahoe,Large SUV,50000,C3 Toronto
+Dodge Charger,Muscle car,Thirty Thousand,C3 Toronto
+Cadillac Escalade,Luxury SUV,78000,C3 Montreal
