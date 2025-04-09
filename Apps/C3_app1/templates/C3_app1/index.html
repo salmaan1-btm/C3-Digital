@@ -3,7 +3,17 @@
 {% block content %}
 <h2 class="page-header">Dashboard</h2>
 
+
+<!-- Cumulative Revenue Chart -->
+<div>
+    
+    <div class="card-body text-center">
+        <img src="{% url 'C3_app1:daily_revenue_chart' %}" class="img-fluid" alt="Daily Revenue Chart">
+    </div>
+</div>
+
 <div class="row mb-4">
+    
     <!-- Claims Overview -->
     <div class="col-md-6">
         <div class="card mb-3">
@@ -39,7 +49,10 @@
     </div>
 </div>
 
+
+
 <!-- Sales Section -->
+<!-- 
 <div class="card">
     <div 
     class="card-header">Latest Sales Transactions
@@ -56,4 +69,6 @@
         {% endfor %}
     </ul>
 </div>
+-->
+  
 {% endblock %}

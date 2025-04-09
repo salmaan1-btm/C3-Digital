@@ -30,5 +30,7 @@ urlpatterns = [
     path("support/", views.support_view, name="support"),
     path('password_change/', auth_views.PasswordChangeView.as_view(template_name='C3_app1/password_change.html',success_url=reverse_lazy('C3_app1:password_change_done')),name='password_change'),
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='C3_app1/password_change_done.html'), name='password_change_done'),
-    
+    path('charts/daily-revenue/', views.daily_revenue_chart, name='daily_revenue_chart'),
+
+
 ]

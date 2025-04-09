@@ -11,6 +11,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import base64
 import seaborn as sns
+from collections import defaultdict
+import matplotlib.dates as mdates
+from matplotlib.ticker import MaxNLocator
 
 # Create your views here.
 
@@ -182,6 +185,83 @@ def sales_chart(request):
     buffer.seek(0)
 
     return HttpResponse(buffer.getvalue(), content_type='image/png')
+
+
+
+
+@login_required
+def daily_revenue_chart(request):
+    from collections import defaultdict
+    from datetime import timedelta
+    from .models import Sale
+    import matplotlib.pyplot as plt
+    from matplotlib.ticker import MaxNLocator
+
+    sales = Sale.objects.select_related('inventory__product').order_by('date_added')
+
+    if not sales:
+        return HttpResponse("No sales data available", content_type="text/plain")
+
+    # Prepare revenue data by day
+    revenue_by_day = defaultdict(float)
+    for sale in sales:
+        date = sale.date_added
+        revenue = sale.quantity * float(sale.inventory.product.price)
+        revenue_by_day[date] += revenue
+
+    sorted_dates = sorted(revenue_by_day.keys())
+    total_days = (sorted_dates[-1] - sorted_dates[0]).days + 1
+
+    # Dynamic grouping logic
+    if total_days <= 10:
+        labels = sorted_dates
+        revenues = [revenue_by_day[day] for day in labels]
+        label_format = "%Y-%m-%d"
+        title = "Daily Revenue"
+    elif total_days <= 30:
+        weekly_revenue = defaultdict(float)
+        for date, rev in revenue_by_day.items():
+            week_start = date - timedelta(days=date.weekday())
+            weekly_revenue[week_start] += rev
+        labels = sorted(weekly_revenue.keys())
+        revenues = [weekly_revenue[week] for week in labels]
+        label_format = "Week of %b %d"
+        title = "Weekly Revenue"
+    else:
+        monthly_revenue = defaultdict(float)
+        for date, rev in revenue_by_day.items():
+            month_key = date.replace(day=1)
+            monthly_revenue[month_key] += rev
+        labels = sorted(monthly_revenue.keys())
+        revenues = [monthly_revenue[month] for month in labels]
+        label_format = "%b %Y"
+        title = "Monthly Revenue"
+
+    # Plot the chart
+    plt.figure(figsize=(10, 4))
+    plt.plot(labels, revenues, marker='o', linestyle='-', color="#20c997", linewidth=2)
+    plt.title(title, fontsize=14)
+    plt.xlabel("Date", fontsize=12)
+    plt.ylabel("Revenue ($)", fontsize=12)
+    plt.grid(True, linestyle='--', alpha=0.5)
+
+    ax = plt.gca()
+    ax.xaxis.set_major_locator(MaxNLocator(nbins=10, prune='both'))
+    ax.set_xticks(labels)
+    ax.set_xticklabels([label.strftime(label_format) for label in labels], rotation=30)
+
+    plt.tight_layout()
+
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    plt.close()
+    buffer.seek(0)
+
+    return HttpResponse(buffer.getvalue(), content_type='image/png')
+
+
+
+
 
 
 
